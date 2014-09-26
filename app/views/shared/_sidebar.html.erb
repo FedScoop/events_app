@@ -1,0 +1,35 @@
+<div id="sidebar">
+  <div id="text-9" class="widget widget_text">
+    <h3>
+      <span>Next event</span>
+    </h3>
+    <div class="textwidget">
+      <ul>
+        <li>
+          <a href="#"><%= @next_event.name %></a>
+        </li>
+        <li><%= @next_event.date.strftime('%B %-d, %Y') %></li>
+      </ul>
+      <p>
+        <a href="<%= @next_event.reg_url ||= "#" %>" class="more-sidebar">Register</a>
+      </p>
+    </div>
+  </div>
+  <div id="text-11" class="widget widget_text">
+    <h3>
+      <span>Request to Speak</span>
+    </h3>
+    <div class="textwidget">
+      <p>Interested in speaking at a FedScoop event?</p>
+      <p>
+        <a href="/about/request-to-speak/" class="more-sidebar">Start here</a>
+      </p>
+    </div>
+  </div>
+  <div id="search-3" class="widget widget_search">
+    <form method="get" id="searchform" action="http://fedscoop.com/events/">
+      <input type="text" onblur="if (this.value == '') {this.value = 'search...';}" onfocus="if (this.value == 'search...') {this.value = '';}" value="search..." name="s" id="s">
+      <input type="submit" id="searchsubmit" value="Go">
+    </form>
+  </div>
+</div>

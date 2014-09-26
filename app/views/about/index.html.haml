@@ -1,0 +1,6 @@
+= render "shared/header"
+#content-wrap
+  = render "shared/sidebar", collection: @next_event
+  #content
+    = render "content", collection: [@speakers, @about]
+  = render "shared/footer"

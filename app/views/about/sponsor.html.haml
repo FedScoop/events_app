@@ -1,0 +1,72 @@
+= render "shared/header"
+#content-wrap
+  = render "shared/sidebar", collection: @next_event
+  #content
+    #page.post{ style: "padding-top: 0;" }
+      %h1
+        %a{:href => "/about/sponsor/", :rel => "bookmark", :title => "Permanent Link to Sponsor"} Sponsor
+      %ul.post-meta
+      .entry
+        %p Contact us to sponsor FedScoopEvents:
+        %ul
+          %li Phone: 202-344-5180
+          %li Email: goldy.kamali@fedscoop.com
+        %p Send a message:
+        #wpcf7-f2533-p79-o1.wpcf7
+          .screen-reader-response
+          %form.wpcf7-form{:action => "/events/about/sponsor/#wpcf7-f2533-p79-o1", :method => "post", :novalidate => "novalidate"}
+            %div{:style => "display: none;"}
+              %input{:name => "_wpcf7", :type => "hidden", :value => "2533"}/
+              %input{:name => "_wpcf7_version", :type => "hidden", :value => "3.8"}/
+              %input{:name => "_wpcf7_locale", :type => "hidden", :value => ""}/
+              %input{:name => "_wpcf7_unit_tag", :type => "hidden", :value => "wpcf7-f2533-p79-o1"}/
+              %input{:name => "_wpnonce", :type => "hidden", :value => "6b2496ad70"}/
+            %p
+              Name (required)
+              %br/
+              %span.wpcf7-form-control-wrap.your-name
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "your-name", :size => "40", :type => "text", :value => ""}/
+            %p
+              Company (required)
+              %br/
+              %span.wpcf7-form-control-wrap.your-company
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "your-company", :size => "40", :type => "text", :value => ""}/
+            %p
+              Email (required)
+              %br/
+              %span.wpcf7-form-control-wrap.your-email
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-email.wpcf7-validates-as-required.wpcf7-validates-as-email{"aria-invalid" => "false", "aria-required" => "true", :name => "your-email", :size => "40", :type => "email", :value => ""}/
+            %p
+              Phone (required)
+              %br/
+              %span.wpcf7-form-control-wrap.your-phone
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "your-phone", :size => "40", :type => "text", :value => ""}/
+            %p
+              Event you would like to sponsor (required)
+              %br/
+              %span.wpcf7-form-control-wrap.event-title
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "event-title", :size => "40", :type => "text", :value => ""}/
+            %p
+              Event date you would like to sponsor (required)
+              %br/
+              %span.wpcf7-form-control-wrap.event-date
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "event-date", :size => "40", :type => "text", :value => ""}/
+            %p
+              Message
+              %br/
+              %span.wpcf7-form-control-wrap.your-message
+                %textarea.wpcf7-form-control.wpcf7-textarea{"aria-invalid" => "false", :cols => "40", :name => "your-message", :rows => "10"}
+            %p
+              Verify
+              %br/
+              %input{:name => "_wpcf7_captcha_challenge_captcha-508", :type => "hidden", :value => "325204182"}/
+              %img.wpcf7-form-control.wpcf7-captchac.wpcf7-captcha-captcha-508{:alt => "captcha", :height => "28", :src => "http://fedscoop.com/events/wp-content/uploads/wpcf7_captcha/325204182.png", :width => "84"}/
+            %p
+              %span.wpcf7-form-control-wrap.captcha-508
+                %input.wpcf7-form-control.wpcf7-captchar{"aria-invalid" => "false", :name => "captcha-508", :size => "40", :type => "text", :value => ""}/
+            %p
+              %input.wpcf7-form-control.wpcf7-submit{:type => "submit", :value => "Send"}/
+              %img.ajax-loader{:alt => "Sending ...", :src => "http://fedscoop.com/events/wp-content/plugins/contact-form-7/images/ajax-loader.gif", :style => "visibility: hidden;"}/
+            .wpcf7-response-output.wpcf7-display-none
+  = render "shared/footer"
+
