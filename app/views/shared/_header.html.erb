@@ -1,0 +1,43 @@
+<div id="header">
+
+  <!-- Logo -->
+  <div id="logo">
+    <a href="http://fedscoop.com/events/"><img src="http://fedscoop.com/fedtalks/wp-content/uploads/2011/12/fsevents_whitelogo.png" alt="FedScoopEvents"></a>
+  </div>
+
+
+  <!-- 468x60 banner code -->
+  <div id="ad468">
+  </div>
+
+  <div class="clear"></div>
+
+  <div id="menu" class="dropdown">
+
+    <ul id="menu-main" class=""><li id="menu-item-675" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-675"><a href="/">Home</a></li>
+      <li id="menu-item-720" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-720"><a href="/about">About</a></li>
+      <li id="menu-item-2788" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2788"><a href="/calendar">Events<span class="downarrowclass" style="border:0;"></span></a>
+        <ul class="sub-menu" style="top: 34px; display: none; visibility: visible;">
+          <li id="menu-item-9209" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9209"><a href="http://fedscoop.com/events/calendar">Calendar &amp; Past Events</a></li>
+          <% @events_this_year.each do |event| %>
+            <li id="menu-item-9430" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9430"><a href="http://fedscoop.com/events/<%= event.name.downcase.gsub(" ", "") %>"><%= event.date.strftime("%b. %-d: ") + event.name %></a></li>
+          <% end %>
+        </ul>
+      </li>
+      <li id="menu-item-81" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-81"><a href="/about/sponsor">Sponsor<span class="downarrowclass" style="border:0;"></span></a>
+        <ul class="sub-menu" style="top: 34px; display: none; visibility: visible;">
+          <li id="menu-item-3367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3367"><a href="http://fedscoop.com/events/about/sponsor/resources/">Resources</a></li>
+        </ul>
+      </li>
+      <li id="menu-item-4002" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4002"><a href="/about/request-to-speak">Request to Speak</a></li>
+      <li id="menu-item-129" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-129"><a href="/about/speakers">Past Speakers</a></li>
+    </ul>
+    <ul class="social">
+      <li><a href="http://fedscoop.com/events/feed/"><img src="http://fedscoop.com/events/wp-content/themes/yamidoo_pro/images/rss.png" alt="RSS"></a></li>
+
+      <li><a href="http://twitter.com/fedscoop"><img src="http://fedscoop.com/events/wp-content/themes/yamidoo_pro/images/twitter2.png" alt="Twitter"></a></li>
+      <li><a href="http://facebook.com/fedscoop"><img src="http://fedscoop.com/events/wp-content/themes/yamidoo_pro/images/facebook2.png" alt="Facebook"></a></li>          </ul>
+
+    </div><!-- /#menu -->
+
+  </div>
