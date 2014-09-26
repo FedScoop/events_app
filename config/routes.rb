@@ -53,4 +53,12 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  #ABOUT
+  root 'about#index'
+  get 'about/speakers' => 'about#speakers'
+  get 'about' => 'about#about'
+  get 'calendar' => 'about#calendar'
+  get 'about/sponsor' => 'about#sponsor'
+  get 'about/request-to-speak' => 'about#request_to_speak'
 end
