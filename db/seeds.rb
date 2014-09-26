@@ -8,14 +8,19 @@
 
 5.times do
   Event.create(name: Faker::Company.name,
-               date: DateTime.now)
+               date: DateTime.now.advance(days: (1..100).to_a.sample))
+end
+5.times do
+  Event.create(name: Faker::Company.name,
+               date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
 end
 
-10.times do
+50.times do
   new_speaker = Speaker.create(first_name: Faker::Name.first_name,
                                last_name: Faker::Name.last_name,
                                job_title: Faker::Name.title,
-                               employer: Faker::Company.name)
+                               employer: Faker::Company.name,
+                               photo_url: "http://placekitten.com/g/200/200")
   Event.all.sample.speakers << new_speaker
 end
 
@@ -24,7 +29,7 @@ end
   Event.all.sample.sponsors << new_sponsor
 end
 
-5.times do
+10.times do
   Venue.create(name: Faker::Company.name,
                street: Faker::Address.street_address,
                city: Faker::Address.city,
@@ -37,3 +42,6 @@ Event.all.each_with_index do |event, index|
   event.venue = venue
   event.save!
 end
+
+About.create(homepage_text: Faker::Lorem.paragraphs(2).join("\n"),
+             about_page_text: Faker::Lorem.paragraphs(2).join("\n"))
