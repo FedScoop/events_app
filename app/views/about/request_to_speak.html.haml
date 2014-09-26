@@ -1,0 +1,73 @@
+= render "shared/header"
+#content-wrap
+  = render "shared/sidebar", collection: @next_event
+  #content
+    #page.post{ style: "padding-top: 0;" }
+      %h1
+        %a{:href => "http://fedscoop.com/events/about/request-to-speak/", :rel => "bookmark", :title => "Permanent Link to Request to Speak"} Request to Speak
+      %ul.post-meta
+      .entry
+        %p Would you like to speak at a FedScoop event?
+        %p Complete the form below, and we’ll contact you to discuss further.
+        #wpcf7-f3999-p3996-o1.wpcf7
+          .screen-reader-response
+          %form.wpcf7-form{:action => "/events/about/request-to-speak/#wpcf7-f3999-p3996-o1", :method => "post", :novalidate => "novalidate"}
+            %div{:style => "display: none;"}
+              %input{:name => "_wpcf7", :type => "hidden", :value => "3999"}/
+              %input{:name => "_wpcf7_version", :type => "hidden", :value => "3.8"}/
+              %input{:name => "_wpcf7_locale", :type => "hidden", :value => ""}/
+              %input{:name => "_wpcf7_unit_tag", :type => "hidden", :value => "wpcf7-f3999-p3996-o1"}/
+              %input{:name => "_wpnonce", :type => "hidden", :value => "e389a8fbf9"}/
+            %p
+              First Name (required)
+              %br/
+              %span.wpcf7-form-control-wrap.first-name
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "first-name", :size => "40", :type => "text", :value => ""}/
+            %p
+              Last Name (required)
+              %br/
+              %span.wpcf7-form-control-wrap.last-name
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "last-name", :size => "40", :type => "text", :value => ""}/
+            %p
+              Title
+              %br/
+              %span.wpcf7-form-control-wrap.title
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "title", :size => "40", :type => "text", :value => ""}/
+            %p
+              Organization
+              %br/
+              %span.wpcf7-form-control-wrap.organization
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "organization", :size => "40", :type => "text", :value => ""}/
+            %p
+              Email (required)
+              %br/
+              %span.wpcf7-form-control-wrap.email
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-email.wpcf7-validates-as-required.wpcf7-validates-as-email{"aria-invalid" => "false", "aria-required" => "true", :name => "email", :size => "40", :type => "email", :value => ""}/
+            %p
+              Phone
+              %br/
+              %span.wpcf7-form-control-wrap.phone
+                %input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :name => "phone", :size => "40", :type => "text", :value => ""}/
+            %p
+              Is there a specific topic or event that is of interest to you as a speaker?
+              %br/
+              %span.wpcf7-form-control-wrap.topic-interest
+                %textarea.wpcf7-form-control.wpcf7-textarea.wpcf7-validates-as-required{"aria-invalid" => "false", "aria-required" => "true", :cols => "40", :name => "topic-interest", :rows => "10"}
+            %p
+              Please use this space to add any background information you think may be relevant:
+              %br/
+              %span.wpcf7-form-control-wrap.background-information
+                %textarea.wpcf7-form-control.wpcf7-textarea{"aria-invalid" => "false", :cols => "40", :name => "background-information", :rows => "10"}
+            %p
+              Verify
+              %br/
+              %input{:name => "_wpcf7_captcha_challenge_captcha-508", :type => "hidden", :value => "578560167"}/
+              %img.wpcf7-form-control.wpcf7-captchac.wpcf7-captcha-captcha-508{:alt => "captcha", :height => "28", :src => "http://fedscoop.com/events/wp-content/uploads/wpcf7_captcha/578560167.png", :width => "84"}/
+            %p
+              %span.wpcf7-form-control-wrap.captcha-508
+                %input.wpcf7-form-control.wpcf7-captchar{"aria-invalid" => "false", :name => "captcha-508", :size => "40", :type => "text", :value => ""}/
+            %p
+              %input.wpcf7-form-control.wpcf7-submit{:type => "submit", :value => "Send"}/
+              %img.ajax-loader{:alt => "Sending ...", :src => "http://fedscoop.com/events/wp-content/plugins/contact-form-7/images/ajax-loader.gif", :style => "visibility: hidden;"}/
+            .wpcf7-response-output.wpcf7-display-none
+  = render "shared/footer"

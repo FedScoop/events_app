@@ -1,0 +1,20 @@
+= render "shared/header"
+#content-wrap
+  = render "shared/sidebar", collection: @next_event
+  #content
+    .post#page{ style: "padding-top: 0;" }
+      %h1 CALENDAR
+      .entry
+        %h2 PAST EVENTS
+        - @past_events.each do |year, events_arr|
+          %h2= year
+          - events_arr.each do |event|
+            %h3= event.name
+            %ul
+              %li
+                %a{ href: "http://fedscoop.com/events/#{event.name.downcase.gsub(/\ /, "-").gsub(/(\.|\,)/, "")}" } Details
+              %li= event.date.strftime("%B %-d, %Y")
+              %li= "#{event.venue.name}, #{event.venue.city}, #{event.venue.state}"
+
+  = render "shared/footer"
+

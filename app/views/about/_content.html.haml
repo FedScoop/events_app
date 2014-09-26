@@ -1,0 +1,25 @@
+#about-fedtalks
+  %p= @about
+%h3 Past speakers
+#featured-speakers
+  %ul
+    %li#text-6.widget.widget_text
+      .textwidget
+        %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "font-size: 13px; background-color: #ffffff;", :width => "600"}
+          %tbody
+            - @speakers.each_slice(4) do |slice|
+              %tr{:style => "background-color: #ffffff;"}
+                - slice.each do |speaker|
+                  %td{:valign => "top", :width => "151"}
+                    %a{:href => "http://fedscoop.com/fedtalks/about/speakers/#{speaker.name.downcase.gsub(" ", "-")}/"}
+                      %img.size-full.wp-image-2195{:alt => "#{speaker.name}", :border => "0", :height => "150", :src => "#{speaker.photo_url}", :title => "#{speaker.name}", :width => "150"}/
+              %tr{:style => "background-color: #ffffff;"}
+                - slice.each do |speaker|
+                  %td{:valign => "top", :width => "151"}
+                    %a{:href => "http://fedscoop.com/fedtalks/about/speakers/#{speaker.name.downcase.gsub(" ", "-")}/"}
+                      = speaker.name
+                    = speaker.job_title
+                    %br
+                    = speaker.employer
+  .clear
+%a.more{:href => "/about/speakers/"} All past speakers
