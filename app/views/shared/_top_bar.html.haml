@@ -1,0 +1,12 @@
+- if logged_in? || flash[:logout]
+  - user = current_user
+  .top-bar
+    %ul
+      %li
+        - if user
+          Hello, #{user.first_name} #{user.last_name}
+        - elsif flash[:logout]
+          = flash[:logout]
+      - if user
+        %li
+          %a{ href: "/logout" } Logout

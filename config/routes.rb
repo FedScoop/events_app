@@ -64,4 +64,9 @@ Rails.application.routes.draw do
 
   # USERS
   resources :users
+
+  # SESSIONS
+  get 'login' => 'sessions#new'
+  post 'sessions' => 'sessions#create'
+  get 'logout' => 'sessions#logout'
 end
