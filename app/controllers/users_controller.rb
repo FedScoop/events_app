@@ -16,7 +16,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    if logged_in?
+      @user = User.find_by_id(params[:id])
+    else
+      flash[:message] = "You must log in to view that."
+      redirect_to root_path
+    end
   end
 
   private
