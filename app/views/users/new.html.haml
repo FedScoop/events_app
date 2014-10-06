@@ -2,18 +2,20 @@
 %br
 = form_for @user, url: { action: 'create' } do |f|
   First Name:
-  = f.text_field :first_name
+  = f.text_field :first_name, required: true
   %br
   Last Name:
-  = f.text_field :last_name
+  = f.text_field :last_name, required: true
   %br
   Email:
-  = f.email_field :email
+  = f.email_field :email, required: true, pattern: '[^@]+@fedscoop.com', class: 'new-user-email'
+  %span.email-valid Email must be a "@fedscoop.com" email.
   %br
   Password:
-  = f.password_field :password
+  = f.password_field :password, required: true, class: 'new-user-pass'
   %br
-  Conform Password:
-  = f.password_field :password_confirmation
+  Confirm Password:
+  = f.password_field :password_confirmation, required: true, class: 'new-user-pass-conf'
+  %span.password-error
   %br
   = f.submit
