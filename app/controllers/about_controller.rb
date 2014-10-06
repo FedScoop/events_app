@@ -8,7 +8,7 @@ class AboutController < ApplicationController
 
   def index
     @speakers = Speaker.all.limit 8
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
     @about = About.first.homepage_text
@@ -16,19 +16,19 @@ class AboutController < ApplicationController
 
   def speakers
     @speakers = Speaker.all
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
   end
 
   def about
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
   end
 
   def calendar
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
 
@@ -36,13 +36,13 @@ class AboutController < ApplicationController
   end
 
   def sponsor
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
   end
 
   def request_to_speak
-    @next_event = Event.where('date > ?', DateTime.now).order("date").first
+    @next_event = Event.where('date >= ?', DateTime.now).order("date").first
     events = Event.where('date > ?', DateTime.now).order("date")
     @events_this_year = events.inject([]) { |arr, event| arr << event if event.date.year == DateTime.now.year }
   end
