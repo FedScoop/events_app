@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20140926193836) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+    t.boolean  "validated"
+    t.boolean  "admin"
+    t.string   "validation_hex"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
