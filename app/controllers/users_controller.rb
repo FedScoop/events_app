@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      UsersMailer.welcome_email(@user).deliver
+      flash[:message] = "Please check your email to validate your account"
+      redirect_to root_path
     else
       flash[:message] = "Something went wrong. Please try again."
       redirect_to new_user_path
