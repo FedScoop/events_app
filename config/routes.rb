@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
   # USERS
   resources :users
+  get 'users/validate/:id' => 'users#validate'
 
   # SESSIONS
   get 'login' => 'sessions#new'
