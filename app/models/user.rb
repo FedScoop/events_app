@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /[^@]+@fedscoop.com/
-  validates :password, presence: true
+  # validates :password, presence: true
   before_validation { |user|
     user.first_name = user.first_name.strip
     user.last_name = user.last_name.strip

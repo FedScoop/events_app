@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.validated = false
+    @user.admin = false
+    @user.validation_hex = SecureRandom.hex(10)
     if @user.save
       UsersMailer.welcome_email(@user).deliver
       flash[:message] = "Please check your email to validate your account"
@@ -32,7 +35,7 @@ class UsersController < ApplicationController
       @user = user
       session[:user_id] = user.id
       @user.validated = true
-      @user.save
+      @user.save!
       redirect_to user_path @user
     else
       flash[:message] = "This user has already been validated"
