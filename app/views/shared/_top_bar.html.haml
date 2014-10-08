@@ -9,4 +9,8 @@
           = flash[:message]
       - if user
         %li
+          %a
+      - if user
+        %li.logout
           %a{ href: "/logout" } Logout
+%div{ style: "clear:both" }
