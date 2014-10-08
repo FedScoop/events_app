@@ -17,10 +17,25 @@ class UsersController < ApplicationController
   end
 
   def show
-    if logged_in?
-      @user = User.find_by_id(params[:id])
+    user = User.find_by_id(params[:id])
+    if logged_in? && user.validated
+      @user = user
     else
-      flash[:message] = "You must log in to view that."
+      flash[:message] = "You must be logged in to view that."
+      redirect_to root_path
+    end
+  end
+
+  def validate
+    user = User.find_by_validation_hex(params[:id])
+    if !user.validated
+      @user = user
+      session[:user_id] = user.id
+      @user.validated = true
+      @user.save
+      redirect_to user_path @user
+    else
+      flash[:message] = "This user has already been validated"
       redirect_to root_path
     end
   end
