@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }
+  %body
+    %p Hello, #{@user.first_name + " " + @user.last_name }!
+    %br
+    %p To validate your email, you can <a href='#{@url}'>click here</a>, or copy and paste the URL below into your browser:
+    %p= @url
