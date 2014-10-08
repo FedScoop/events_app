@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   get 'about/request-to-speak' => 'about#request_to_speak'
 
   # USERS
-  resources :users
+  resources :users, only: [:new, :create, :show]
   get 'users/validate/:id' => 'users#validate'
 
   # SESSIONS
