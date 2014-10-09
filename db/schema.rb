@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926134155) do
+ActiveRecord::Schema.define(version: 20140926193836) do
 
   create_table "abouts", force: true do |t|
     t.string "homepage_text"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20140926134155) do
     t.integer  "event_id"
     t.integer  "sponsor_id"
     t.string   "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.boolean  "validated"
+    t.boolean  "admin"
+    t.string   "validation_hex"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -54,11 +54,20 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  #ABOUT
+  # ABOUT
   root 'about#index'
   get 'about/speakers' => 'about#speakers'
   get 'about' => 'about#about'
   get 'calendar' => 'about#calendar'
   get 'about/sponsor' => 'about#sponsor'
   get 'about/request-to-speak' => 'about#request_to_speak'
+
+  # USERS
+  resources :users, only: [:new, :create, :show]
+  get 'users/validate/:id' => 'users#validate'
+
+  # SESSIONS
+  get 'login' => 'sessions#new'
+  post 'sessions' => 'sessions#create'
+  get 'logout' => 'sessions#logout'
 end

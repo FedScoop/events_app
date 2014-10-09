@@ -1,0 +1,12 @@
+- if flash[:error]
+  %h2= flash[:error]
+%h1 Login
+%br
+= form_for @user, url: { action: 'create' } do |f|
+  Email:
+  = f.email_field :email, required: true
+  %br
+  Password:
+  = f.password_field :password, required: true
+  %br
+  = f.submit "Login"
