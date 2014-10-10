@@ -14,3 +14,5 @@
 %a{ href: "#{edit_speaker_path @speaker}" } Edit #{@speaker.name}
 %br
 %a{ href: "#{speakers_path}" } Back to all speakers
+%br
+= button_to "Delete #{@speaker.first_name}", @speaker, method: :delete, onclick: "return confirm('Are you sure you want to delete #{@speaker.name}?')"
