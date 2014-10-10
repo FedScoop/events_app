@@ -19,6 +19,10 @@ class SpeakersController < ApplicationController
     redirect_to speaker_path(Speaker.find_by_id params[:id])
   end
 
+  def new
+    @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200")
+  end
+
   private
 
   def speaker_params
