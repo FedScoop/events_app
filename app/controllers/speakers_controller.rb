@@ -8,4 +8,8 @@ class SpeakersController < ApplicationController
     logged_in? ? @speaker = Speaker.find_by_id(params[:id]) : not_logged_in
   end
 
+  def edit
+    logged_in? ? @speaker = Speaker.find_by_id(params[:id]) : not_logged_in
+  end
+
 end
