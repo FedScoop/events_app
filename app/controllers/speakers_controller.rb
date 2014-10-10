@@ -5,7 +5,15 @@ class SpeakersController < ApplicationController
   end
 
   def show
-    logged_in? ? @speaker = Speaker.find_by_id(params[:id]) : not_logged_in
+    speaker = Speaker.find_by_id(params[:id])
+    if logged_in? && speaker
+      @speaker = speaker
+    elsif !speaker
+      flash[:message] = "Sorry, that speaker doesn't exist!"
+      redirect_to speakers_path
+    else
+      not_logged_in
+    end
   end
 
   def edit
