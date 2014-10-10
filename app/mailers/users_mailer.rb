@@ -3,7 +3,7 @@ class UsersMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = "http://localhost:3000/users/validate/#{user.validation_hex}"
+    @url = "http://localhost:3000" + validate_user_path(user.validation_hex)
     mail to: @user.email, subject: 'Please validate your email address'
   end
 end
