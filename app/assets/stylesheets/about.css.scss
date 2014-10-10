@@ -1823,3 +1823,17 @@ body {
 #header {
   margin-top: 0;
 }
+
+.flash-message {
+  width: 300px;
+  // position: absolute;
+  top: 10px;
+  display: block;
+  margin: 10px auto;
+  background-color: #EE2A7B;
+  border: 1px solid darken(#EE2A7B, 30%);
+  box-shadow: 0 0 10px 0 #EE2A7B;
+  padding: 5px 10px;
+  text-align: center;
+  color: white;
+}
