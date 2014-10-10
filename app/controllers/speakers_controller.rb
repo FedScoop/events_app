@@ -41,6 +41,18 @@ class SpeakersController < ApplicationController
     end
   end
 
+  def destroy
+    @speaker = Speaker.find_by_id params[:id]
+    speaker_name = @speaker.name
+    if @speaker.destroy!
+      flash[:message] = "#{speaker_name} successfully deleted"
+      redirect_to speakers_path
+    else
+      flash[:message] = "An error occurred."
+      redirect_to speaker_path(@speaker)
+    end
+  end
+
   private
 
   def speaker_params
