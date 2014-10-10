@@ -31,6 +31,16 @@ class SpeakersController < ApplicationController
     @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200")
   end
 
+  def create
+    s_params = speaker_params
+    s_params[:employer] = Agency.find_by_id s_params[:employer]
+    @speaker = Speaker.new(s_params)
+    if @speaker.save
+      flash[:message] = "Created #{@speaker.name} successfully!"
+      redirect_to speaker_path(@speaker)
+    end
+  end
+
   private
 
   def speaker_params
