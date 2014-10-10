@@ -15,11 +15,16 @@ end
                date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
 end
 
+25.times do
+  Agency.create(name: Faker::Company.name)
+end
+
 50.times do
+  agencies = Agency.all
   new_speaker = Speaker.create(first_name: Faker::Name.first_name,
                                last_name: Faker::Name.last_name,
                                job_title: Faker::Name.title,
-                               employer: Faker::Company.name,
+                               employer: agencies.sample,
                                photo_url: "http://placekitten.com/g/200/200")
   Event.all.sample.speakers << new_speaker
 end
