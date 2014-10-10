@@ -11,11 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926193836) do
+ActiveRecord::Schema.define(version: 20141010140801) do
 
   create_table "abouts", force: true do |t|
     t.string "homepage_text"
     t.string "about_page_text"
+  end
+
+  create_table "agencies", force: true do |t|
+    t.string "name"
   end
 
   create_table "events", force: true do |t|
@@ -31,9 +35,10 @@ ActiveRecord::Schema.define(version: 20140926193836) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "job_title"
-    t.string   "employer"
     t.string   "suffix"
     t.string   "photo_url"
+    t.text     "bio"
+    t.integer  "agency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
