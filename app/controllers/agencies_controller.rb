@@ -23,7 +23,7 @@ class AgenciesController < ApplicationController
   private
 
   def agency_params
-    params.require(:agency).permit(:name, :photo_url)
+    params.require(:agency).permit(:name)
   end
 
 end
