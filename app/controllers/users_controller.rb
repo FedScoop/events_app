@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard
+    logged_in? ? @user = current_user : not_logged_in
+  end
+
   private
 
   def user_params

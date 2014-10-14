@@ -64,7 +64,8 @@ Rails.application.routes.draw do
 
   # USERS -----------------------------------------------------------------
   resources :users, only: [:new, :create, :show]
-  get 'users/validate/:id' => 'users#validate', as: "validate_user"
+  get 'users/validate/:id' => 'users#validate', as: 'validate_user'
+  get 'dashboard' => 'users#dashboard', as: 'dashboard'
 
   # SESSIONS --------------------------------------------------------------
   get 'login' => 'sessions#new'

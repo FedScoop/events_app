@@ -1,0 +1,48 @@
+%h1= @user.first_name + "'s FedScoop Events Dashboard"
+%br
+
+.dashboard-events
+  %h2 Events
+  %br
+  %p
+    %a{ href: "#" } All Events
+  %p
+    %a{ href: "#" } New Event
+
+.dashboard-speakers
+  %h2 Speakers
+  %br
+  %p
+    %a{ href: "#{speakers_path}" } All Speakers
+  %p
+    %a{ href: "#{new_speaker_path}" } New Speaker
+
+.dashboard-agencies
+  %h2 Agencies / Employers
+  %br
+  %p
+    %a{ href: "#" } All Agencies / Employers
+  %p
+    %a{ href: "#" } New Agency / Employer
+
+.dashboard-venues
+  %h2 Venues
+  %br
+  %p
+    %a{ href: "#" } All Venues
+  %p
+    %a{ href: "#" } New Venue
+
+.dashboard-sponsors
+  %h2 Sponsors
+  %br
+  %p
+    %a{ href: "#" } All Sponsors
+  %p
+    %a{ href: "#" } New Sponsor
+
+.dashboard-events
+  %h2 Account
+  %br
+  %p
+    %a{ href: "#" } Edit account details
