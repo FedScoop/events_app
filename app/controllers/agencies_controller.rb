@@ -20,4 +20,10 @@ class AgenciesController < ApplicationController
     if_logged_in { @agency = Agency.find_by_id params[:id] }
   end
 
+  private
+
+  def agency_params
+    params.require(:agency).permit(:name, :photo_url)
+  end
+
 end
