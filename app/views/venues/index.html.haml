@@ -1,0 +1,8 @@
+%h1 List of Venues
+%a{ href: "#{new_venue_path}" } Add new venue
+%br
+%br
+%ul.venue-list
+  - @venues.each do |venue|
+    %li.venue-item
+      %a{ href: "#{venue_path venue}" }= venue.name

@@ -17,4 +17,22 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def if_logged_in(*else_if, &block)
+    if else_if.first
+      if logged_in?
+        block.call
+      elsif else_if.first
+        else_if[1].call
+      else
+        not_logged_in
+      end
+    else
+      if logged_in?
+        block.call
+      else
+        not_logged_in
+      end
+    end
+  end
+
 end

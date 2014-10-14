@@ -5,13 +5,13 @@ Photo uploading and changing coming soon.
 %br
 = form_for @speaker do |f|
   First Name:
-  = f.text_field :first_name
+  = f.text_field :first_name, required: true
   %br
   Last Name:
-  = f.text_field :last_name
+  = f.text_field :last_name, required: true
   %br
   Job Title:&nbsp&nbsp&nbsp&nbsp
-  = f.text_field :job_title, style: "width: 300px;"
+  = f.text_field :job_title, required: true, style: "width: 300px;"
   %br
   Employer:
   = f.collection_select :employer, Agency.order(:name),:id,:name
@@ -21,7 +21,7 @@ Photo uploading and changing coming soon.
   %br
   Bio:
   %br
-  = f.text_area :bio, {rows: "5", cols: "50"}
+  = f.text_area :bio, {rows: "5", cols: "50", required: true}
   %br
   = f.hidden_field :photo_url, value: @speaker.photo_url
   = f.submit "Submit"

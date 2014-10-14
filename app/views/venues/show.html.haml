@@ -1,0 +1,25 @@
+%h1= @venue.name
+%br
+%br
+%p Address:
+%p
+  = @venue.street
+  %br
+  = "#{@venue.city}, #{@venue.state} #{@venue.zip}"
+%br
+%p Events at #{@venue.name}:
+%p
+  - if @venue.events.first
+    %ul
+      - @venue.events.each do |event|
+        %li
+          %a{ href: "#" }= event.name
+  - else
+    #{@venue.name} hasn't been used for any events
+%br
+%br
+%a{ href: "#{edit_venue_path @venue}" } Edit #{@venue.name}
+%br
+%a{ href: "#{venues_path}" } Back to all venues
+%br
+= button_to "Delete #{@venue.name}", @venue, method: :delete, onclick: "return confirm('Are you sure you want to delete #{@venue.name}?')"

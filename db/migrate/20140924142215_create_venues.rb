@@ -5,7 +5,7 @@ class CreateVenues < ActiveRecord::Migration
       t.string  :street
       t.string  :city
       t.string  :state
-      t.string :zip
+      t.string  :zip
 
       t.timestamps
     end
