@@ -27,6 +27,12 @@ class SponsorsController < ApplicationController
     if_logged_in { @sponsor = Sponsor.find_by_id params[:id] }
   end
 
+  def update
+    sponsor = Sponsor.find_by_id params[:id]
+    Sponsor.update sponsor.id, sponsor_params
+    redirect_to sponsor_path(sponsor)
+  end
+
   private
 
   def sponsor_params
