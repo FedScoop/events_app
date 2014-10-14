@@ -20,6 +20,12 @@ class VenuesController < ApplicationController
     if_logged_in { @venue = Venue.find_by_id params[:id] }
   end
 
+  def update
+    venue = Venue.find_by_id params[:id]
+    Venue.update venue.id, venue_params
+    redirect_to venue_path(venue)
+  end
+
   private
 
   def venue_params
