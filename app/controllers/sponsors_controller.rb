@@ -12,4 +12,15 @@ class SponsorsController < ApplicationController
     if_logged_in { @sponsor = Sponsor.new photo_url: "http://placekitten.com/g/200/200" }
   end
 
+  def create
+    sponsor = Sponsor.create sponsor_params
+    if sponsor.save!
+      flash[:message] = sponsor.name + " created successfully!"
+      redirect_to sponsor_path(sponsor)
+    else
+      flash[:message] = "An error occurred. Please try again."
+      redirect_to new_sponsor_path
+    end
+  end
+
 end
