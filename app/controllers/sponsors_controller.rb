@@ -33,6 +33,18 @@ class SponsorsController < ApplicationController
     redirect_to sponsor_path(sponsor)
   end
 
+  def destroy
+    sponsor = Sponsor.find_by_id params[:id]
+    sponsor_name = sponsor.name
+    if sponsor.destroy!
+      flash[:message] = sponsor_name + " was successfully deleted."
+      redirect_to sponsors_path
+    else
+      flash[:message] = "Something went wrong."
+      redirect_to sponsor_path(sponsor)
+    end
+  end
+
   private
 
   def sponsor_params
