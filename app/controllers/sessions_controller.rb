@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
     elsif @user
       flash[:message] = "Your email or password was incorect"
       redirect_to login_path
+    else
+      flash[:message] = "That email address is not in our database. Make a new account here."
+      redirect_to new_user_path
     end
   end
 
