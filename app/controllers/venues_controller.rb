@@ -16,6 +16,9 @@ class VenuesController < ApplicationController
     end
   end
 
+  def edit
+    if_logged_in { @venue = Venue.find_by_id params[:id] }
+  end
 
   private
 
