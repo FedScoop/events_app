@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
   def logged_in?
-    !!session[:user_id]
+    !!User.find_by_id(session[:user_id])
   end
 
   def current_user
     User.find_by_id(session[:user_id])
+  end
+
+  def not_logged_in
+    flash[:message] = "You must be logged in to view that"
+    redirect_to root_path
   end
 
 end

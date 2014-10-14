@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  # ABOUT
+  # ABOUT -----------------------------------------------------------------
   root 'about#index'
   get 'about/speakers' => 'about#speakers'
   get 'about' => 'about#about'
@@ -62,12 +62,16 @@ Rails.application.routes.draw do
   get 'about/sponsor' => 'about#sponsor'
   get 'about/request-to-speak' => 'about#request_to_speak'
 
-  # USERS
+  # USERS -----------------------------------------------------------------
   resources :users, only: [:new, :create, :show]
-  get 'users/validate/:id' => 'users#validate'
+  get 'users/validate/:id' => 'users#validate', as: 'validate_user'
+  get 'dashboard' => 'users#dashboard', as: 'dashboard'
 
-  # SESSIONS
+  # SESSIONS --------------------------------------------------------------
   get 'login' => 'sessions#new'
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#logout'
+
+  # SPEAKERS --------------------------------------------------------------
+  resources :speakers
 end

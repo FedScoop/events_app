@@ -36,11 +36,15 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       @user.validated = true
       @user.save!
-      redirect_to user_path @user
+      redirect_to dashboard_path
     else
       flash[:message] = "This user has already been validated"
       redirect_to root_path
     end
+  end
+
+  def dashboard
+    logged_in? ? @user = current_user : not_logged_in
   end
 
   private

@@ -1,0 +1,14 @@
+%h1 List of Speakers
+%a{ href: "#{new_speaker_path}" } Add new speaker
+%hr
+.speaker-list
+  - @speakers.each do |speaker|
+    .speaker-card
+      %a{ href: "#{speaker_path speaker}" }
+        %img{ src: "#{speaker.photo_url}" }
+      %br
+      %p
+        %a.speaker-name{ href: "#{speaker_path speaker}" }
+          = speaker.last_name + ", " + speaker.first_name
+      %p.speaker-title= speaker.job_title
+      %p.speaker-employer= speaker.employer

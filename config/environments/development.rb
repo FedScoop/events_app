@@ -39,13 +39,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    :tls => true,
+    # :tls => true,
     address: 'localhost',
     port: 1025,
-    user_name: 'ryan.verhey@fedscoop.com',
-    password: ENV['EMAIL_PASS'],
-    authentication: "plain",
-    enable_starttls_auto: true
+    # user_name: 'ryan.verhey@fedscoop.com',
+    # password: ENV['EMAIL_PASS'],
+    # authentication: "plain",
+    # enable_starttls_auto: true
   }
 
 end

@@ -5,12 +5,14 @@
       %li
         - if user
           Hello, #{user.first_name} #{user.last_name}
-        - elsif flash[:message]
-          = flash[:message]
       - if user
         %li
-          %a
+          &nbsp;&nbsp;&nbsp;
+          %a{ href: "#{dashboard_path}" } Dashboard
       - if user
         %li.logout
           %a{ href: "/logout" } Logout
   %div{ style: "clear:both" }
+- if flash[:message]
+  .flash-message
+    %span= flash[:message]

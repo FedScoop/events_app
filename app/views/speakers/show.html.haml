@@ -1,0 +1,18 @@
+%h1= @speaker.name
+%hr
+%img{ src: "#{@speaker.photo_url}" }
+%br
+%br
+%p Job Title: #{@speaker.job_title}
+%p Employer: #{@speaker.employer}
+%p
+  Bio:
+  %br
+  = @speaker.bio
+%br
+%br
+%a{ href: "#{edit_speaker_path @speaker}" } Edit #{@speaker.name}
+%br
+%a{ href: "#{speakers_path}" } Back to all speakers
+%br
+= button_to "Delete #{@speaker.first_name}", @speaker, method: :delete, onclick: "return confirm('Are you sure you want to delete #{@speaker.name}?')"

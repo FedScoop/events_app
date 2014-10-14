@@ -3,16 +3,19 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(user_params[:email])
     if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path
-    else
-      flash[:error] = "Your email or password was incorect"
+      redirect_to dashboard_path
+    elsif @user
+      flash[:message] = "Your email or password was incorect"
       redirect_to login_path
+    else
+      flash[:message] = "That email address is not in our database. Make a new account here."
+      redirect_to new_user_path
     end
   end
 
   def new
     if logged_in?
-      redirect_to user_path(current_user)
+      redirect_to dashboard_path
     else
       @user = User.new
     end
