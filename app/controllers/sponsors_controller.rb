@@ -5,7 +5,15 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    if_logged_in { @sponsor = Sponsor.find_by_id params[:id] }
+    sponsor = Sponsor.find_by_id params[:id]
+    if logged_in? && sponsor
+      @sponsor = sponsor
+    elsif !sponsor
+      flash[:message] = "Sorry, that sponsor doesn't exist!"
+      redirect_to sponsors_path
+    else
+      not_logged_in
+    end
   end
 
   def new
