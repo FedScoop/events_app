@@ -1,7 +1,7 @@
 class SpeakersController < ApplicationController
 
   def index
-    logged_in? ? @speakers = Speaker.all.order("last_name") : not_logged_in
+    if_logged_in { @speakers = Speaker.all.order("last_name") }
   end
 
   def show
@@ -17,7 +17,7 @@ class SpeakersController < ApplicationController
   end
 
   def edit
-    logged_in? ? @speaker = Speaker.find_by_id(params[:id]) : not_logged_in
+    if_logged_in { @speaker = Speaker.find_by_id(params[:id]) }
   end
 
   def update
@@ -28,7 +28,7 @@ class SpeakersController < ApplicationController
   end
 
   def new
-    @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200")
+    if_logged_in { @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200") }
   end
 
   def create
