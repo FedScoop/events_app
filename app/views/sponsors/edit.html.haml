@@ -1,0 +1,11 @@
+%h1 Edit #{@sponsor.name}
+%br
+%img{ src: "#{@sponsor.photo_url}" }
+Photo uploading and changing coming soon.
+%br
+= form_for @sponsor do |f|
+  Name:
+  = f.text_field :name, required: true
+  %br
+  = f.hidden_field :photo_url, value: @sponsor.photo_url
+  = f.submit "Save", onclick: "return confirm('Are you sure you want to make these changes to #{@sponsor.name}?')"
