@@ -8,4 +8,8 @@ class SponsorsController < ApplicationController
     if_logged_in { @sponsor = Sponsor.find_by_id params[:id] }
   end
 
+  def new
+    if_logged_in { @sponsor = Sponsor.new photo_url: "http://placekitten.com/g/200/200" }
+  end
+
 end
