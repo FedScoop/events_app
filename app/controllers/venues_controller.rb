@@ -30,6 +30,17 @@ class VenuesController < ApplicationController
     if_logged_in { @venue = Venue.new }
   end
 
+  def create
+    @venue = Venue.new(venue_params)
+    if @venue.save!
+      flash[:message] = @venue.name + " created successfully!"
+      redirect_to venue_path(@venue)
+    else
+      flash[:message] = "An error occurred. Please try again."
+      redirect_to new_venue_path
+    end
+  end
+
   private
 
   def venue_params
