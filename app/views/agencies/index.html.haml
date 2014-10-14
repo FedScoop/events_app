@@ -1,0 +1,8 @@
+%h1 List of Agencies / Employers
+%a{ href: "#{new_agency_path}" } Add new agency / employer
+%br
+%br
+%ul.agency-list
+  - @agencies.each do |agency|
+    %li.agency-item
+      %a{ href: "#{agency_path agency}" }= agency.name
