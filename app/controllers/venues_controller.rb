@@ -26,6 +26,10 @@ class VenuesController < ApplicationController
     redirect_to venue_path(venue)
   end
 
+  def new
+    if_logged_in { @venue = Venue.new }
+  end
+
   private
 
   def venue_params
