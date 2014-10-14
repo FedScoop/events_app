@@ -1,0 +1,21 @@
+%h1= @sponsor.name + " (Sponsor)"
+%hr
+%img{ src: "#{@sponsor.photo_url}" }
+%br
+%br
+%p Events #{@sponsor.name} has sponsored:
+%p
+  - if @sponsor.events.first
+    %ul
+      - @sponsor.events.each do |event|
+        %li
+          %a{ href: "#" }= event.name
+  - else
+    #{@sponsor.name} hasn't sponsored any events
+%br
+%br
+%a{ href: "#{edit_sponsor_path @sponsor}" } Edit #{@sponsor.name}
+%br
+%a{ href: "#{sponsors_path}" } Back to all sponsors
+%br
+= button_to "Delete #{@sponsor.name}", @sponsor, method: :delete, onclick: "return confirm('Are you sure you want to delete #{@sponsor.name}?')"
