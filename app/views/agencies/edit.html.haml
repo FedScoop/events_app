@@ -3,5 +3,6 @@
 %br
 = form_for @agency do |f|
   Name:
+  = f.text_field :name
   %br
   = f.submit "Save", onclick: "return confirm('Are you sure you want to make these changes to #{@agency.name}?')"
