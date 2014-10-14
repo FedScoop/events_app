@@ -20,6 +20,12 @@ class AgenciesController < ApplicationController
     if_logged_in { @agency = Agency.find_by_id params[:id] }
   end
 
+  def update
+    agency = Agency.find_by_id params[:id]
+    Agency.update agency.id, agency_params
+    redirect_to agency_url(agency)
+  end
+
   private
 
   def agency_params
