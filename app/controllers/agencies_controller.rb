@@ -16,4 +16,8 @@ class AgenciesController < ApplicationController
     end
   end
 
+  def edit
+    if_logged_in { @agency = Agency.find_by_id params[:id] }
+  end
+
 end
