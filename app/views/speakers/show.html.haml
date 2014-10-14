@@ -10,6 +10,16 @@
   %br
   = @speaker.bio
 %br
+%p Events #{@speaker.name} has spoken at:
+%p
+  - if @speaker.events.first
+    %ul
+      - @speaker.events.each do |event|
+        %li
+          %a{ href: "#" }= event.name
+  - else
+    #{@speaker.name} hasn't been used for any events
+%br
 %br
 %a{ href: "#{edit_speaker_path @speaker}" } Edit #{@speaker.name}
 %br
