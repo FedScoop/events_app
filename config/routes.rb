@@ -74,4 +74,7 @@ Rails.application.routes.draw do
 
   # SPEAKERS --------------------------------------------------------------
   resources :speakers
+
+  # VENUES ----------------------------------------------------------------
+  resources :venues
 end
