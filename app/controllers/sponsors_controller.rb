@@ -23,6 +23,10 @@ class SponsorsController < ApplicationController
     end
   end
 
+  def edit
+    if_logged_in { @sponsor = Sponsor.find_by_id params[:id] }
+  end
+
   private
 
   def sponsor_params
