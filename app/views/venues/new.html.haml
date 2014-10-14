@@ -1,0 +1,16 @@
+%h1 New Venue
+%br
+= form_for @venue do |f|
+  Name:
+  = f.text_field :name, required: true
+  %br
+  Street Address:
+  = f.text_field :street, required: true, style: "width: 300px;"
+  %br
+  City:
+  = f.text_field :city, required: true, style: "width: 300px;"
+  %br
+  State:
+  = f.select :state, us_states, required: true
+  %br
+  = f.submit "Save"
