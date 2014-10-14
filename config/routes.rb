@@ -77,4 +77,7 @@ Rails.application.routes.draw do
 
   # VENUES ----------------------------------------------------------------
   resources :venues
+
+  # SPONSORS ----------------------------------------------------------------
+  resources :sponsors
 end

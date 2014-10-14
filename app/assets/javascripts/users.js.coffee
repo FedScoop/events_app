@@ -19,7 +19,7 @@ emailValidation = ->
   $emailForm = $('.new-user-email')
   $emailValid = $('.email-valid')
   if $emailForm
-    $emailForm.keyup ->
+    $emailForm.keydown ->
       emailRegEx = /[^@]+@fedscoop.com/
       if $emailForm.val().match emailRegEx
         $emailValid.css 'color', 'green'

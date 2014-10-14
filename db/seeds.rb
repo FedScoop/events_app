@@ -31,7 +31,7 @@ end
 end
 
 10.times do
-  new_sponsor = Sponsor.create(name: Faker::Company.name)
+  new_sponsor = Sponsor.create(name: Faker::Company.name, photo_url: "http://placekitten.com/g/200/200")
   Event.all.sample.sponsors << new_sponsor
 end
 

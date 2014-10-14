@@ -1,0 +1,8 @@
+%h1 List of Sponsors
+%a{ href: "#{new_sponsor_path}" } Add new sponsor
+%br
+%br
+%ul.sponsor-list
+  - @sponsors.each do |sponsor|
+    %li.sponsor-item
+      %a{ href: "#{sponsor_path sponsor}" }= sponsor.name
