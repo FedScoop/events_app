@@ -7,6 +7,16 @@
   %br
   = "#{@venue.city}, #{@venue.state} #{@venue.zip}"
 %br
+%p Events at #{@venue.name}:
+%p
+  - if @venue.events.first
+    %ul
+      - @venue.events.each do |event|
+        %li
+          %a{ href: "#" }= event.name
+  - else
+    #{@venue.name} hasn't been used for any events
+%br
 %br
 %a{ href: "#{edit_venue_path @venue}" } Edit #{@venue.name}
 %br
