@@ -17,7 +17,7 @@ Photo uploading and changing coming soon.
   = f.collection_select :employer, Agency.order(:name),:id,:name
   / %br
   Need to add a new Employer?
-  %a{ href: '#' } Click here
+  %a{ href: "#{new_agency_path}", target: "_blank" } Click here
   %br
   Bio:
   %br

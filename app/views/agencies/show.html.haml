@@ -1,0 +1,19 @@
+%h1= @agency.name + " (Agency / Employer)"
+%br
+%br
+%p Employees of #{@agency.name} in our database:
+%p
+  - if @agency.employees.first
+    %ul
+      - @agency.employees.each do |employee|
+        %li
+          %a{ href: "#{speaker_path employee}" }= employee.name
+  - else
+    #{@agency.name} doesn't have any employees in our database.
+%br
+%br
+%a{ href: "#{edit_agency_path @agency}" } Edit #{@agency.name}
+%br
+%a{ href: "#{agencies_path}" } Back to all agencies
+%br
+/= button_to "Delete #{@agency.name}", @agency, method: :delete, onclick: "return confirm('Are you sure you want to delete #{@agency.name}?')"

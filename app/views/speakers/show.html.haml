@@ -4,7 +4,9 @@
 %br
 %br
 %p Job Title: #{@speaker.job_title}
-%p Employer: #{@speaker.employer}
+%p
+  Employer:
+  %a{ href: "#{agency_path @speaker.employer}" }= @speaker.employer
 %p
   Bio:
   %br
@@ -18,7 +20,7 @@
         %li
           %a{ href: "#" }= event.name
   - else
-    #{@speaker.name} hasn't been used for any events
+    #{@speaker.name} hasn't spoken at any events
 %br
 %br
 %a{ href: "#{edit_speaker_path @speaker}" } Edit #{@speaker.name}
