@@ -1,6 +1,6 @@
 %h1 Edit #{@speaker.name}
 %br
-%img{ src: "#{@speaker.photo_url}" }
+%img{ src: "#{@speaker.photo.url :medium}" }
 %br
 = form_for @speaker do |f|
   First Name:
@@ -18,5 +18,14 @@
   Bio:
   %br
   = f.text_area :bio, {rows: "5", cols: "50"}
+  %br
+  Image:
+  %span{ style: 'color:red;' } PLEASE MAKE SURE IMAGE IS SQUARE.
+  %br
+  If it isn't already square, it will be cropped to make it square automatically and may not look good.
+  %br
+  Also make sure it is as high resolution as possible.
+  %br
+  = f.file_field :photo
   %br
   = f.submit "Save", onclick: "return confirm('Are you sure you want to make these changes to #{@speaker.name}?')"
