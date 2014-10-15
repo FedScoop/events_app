@@ -36,7 +36,7 @@ end
 end
 
 10.times do
-  Venue.create(name: Faker::Company.name,
+  Venue.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
                street: Faker::Address.street_address,
                city: Faker::Address.city,
                state: Faker::Address.state_abbr,
