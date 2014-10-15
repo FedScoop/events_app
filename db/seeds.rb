@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 5.times do
-  Event.create(name: Faker::Company.name,
+  Event.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
                date: DateTime.now.advance(days: (1..100).to_a.sample))
 end
 5.times do
-  Event.create(name: Faker::Company.name,
+  Event.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
                date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
 end
 
