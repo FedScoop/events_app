@@ -42,3 +42,5 @@ gem 'faker'
 gem 'haml-rails'
 gem 'bcrypt'
 gem "paperclip", "~> 4.2"
+gem 'delayed_paperclip'
+gem 'delayed_job_active_record'
