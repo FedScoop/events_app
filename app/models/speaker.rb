@@ -12,4 +12,6 @@ class Speaker < ActiveRecord::Base
     return "#{self.first_name} #{self.last_name}"
   end
 
+  alias :to_s :name
+
 end
