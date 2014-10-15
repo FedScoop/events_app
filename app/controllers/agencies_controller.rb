@@ -26,6 +26,10 @@ class AgenciesController < ApplicationController
     redirect_to agency_url(agency)
   end
 
+  def new
+    if_logged_in { @agency = Agency.new }
+  end
+
   private
 
   def agency_params
