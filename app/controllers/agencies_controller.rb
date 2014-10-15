@@ -42,14 +42,14 @@ class AgenciesController < ApplicationController
   end
 
   # def destroy
-  #   @agency = agency.find_by_id params[:id]
-  #   agency_name = @agency.name
-  #   if @agency.destroy!
+  #   agency = agency.find_by_id params[:id]
+  #   agency_name = agency.name
+  #   if agency.destroy!
   #     flash[:message] = agency_name + " successfully deleted!"
   #     redirect_to agencies_path
   #   else
   #     flash[:message] = "An error occurred."
-  #     redirect_to agency_path(@agency)
+  #     redirect_to agency_path(agency)
   #   end
   # end
 
