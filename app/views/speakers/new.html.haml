@@ -1,8 +1,5 @@
 %h1 New Speaker
 %br
-%img{ src: "#{@speaker.photo_url}" }
-Photo uploading and changing coming soon.
-%br
 = form_for @speaker do |f|
   First Name:
   = f.text_field :first_name, required: true
@@ -23,5 +20,13 @@ Photo uploading and changing coming soon.
   %br
   = f.text_area :bio, {rows: "5", cols: "50", required: true}
   %br
-  = f.hidden_field :photo_url, value: @speaker.photo_url
+  Image:
+  %span{ style: 'color:red;' } PLEASE MAKE SURE IMAGE IS SQUARE.
+  %br
+  If it isn't already square, it will be cropped to make it square automatically and may not look good.
+  %br
+  Also make sure it is as high resolution as possible.
+  %br
+  = f.file_field :photo
+  %br
   = f.submit "Submit"
