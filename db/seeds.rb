@@ -25,13 +25,12 @@ end
                                last_name: Faker::Name.last_name,
                                job_title: Faker::Name.title,
                                employer: agencies.sample,
-                               bio: Faker::Lorem.paragraph(5),
-                               photo_url: "http://placekitten.com/g/200/200")
+                               bio: Faker::Lorem.paragraph(5))
   Event.all.sample.speakers << new_speaker
 end
 
 10.times do
-  new_sponsor = Sponsor.create(name: Faker::Company.name, photo_url: "http://placekitten.com/g/200/200")
+  new_sponsor = Sponsor.create(name: Faker::Company.name)
   Event.all.sample.sponsors << new_sponsor
 end
 
