@@ -30,6 +30,17 @@ class AgenciesController < ApplicationController
     if_logged_in { @agency = Agency.new }
   end
 
+  def create
+    agency = Agency.new agency_params
+    if agency.save!
+      flash[:message] = agency.name + " successfully created!"
+      redirect_to agency_path(agency)
+    else
+      flash[:message] = "An error occurred, please try again."
+      redirect_to new_agency_path
+    end
+  end
+
   private
 
   def agency_params
