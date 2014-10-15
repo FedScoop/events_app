@@ -43,8 +43,12 @@ class SpeakersController < ApplicationController
     s_params[:employer] = Agency.find_by_id s_params[:employer]
     @speaker = Speaker.new(s_params)
     if @speaker.save
+      Delayed::Worker.new.work_off
       flash[:message] = "Created #{@speaker.name} successfully!"
       redirect_to speaker_path(@speaker)
+    else
+      flash[:message] = "Oops, something went wrong"
+      redirect_to new_speaker_path
     end
   end
 
