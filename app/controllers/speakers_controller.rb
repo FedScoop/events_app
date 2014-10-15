@@ -35,7 +35,7 @@ class SpeakersController < ApplicationController
   end
 
   def new
-    if_logged_in { @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200") }
+    if_logged_in { @speaker = Speaker.new }
   end
 
   def create
