@@ -17,7 +17,7 @@ class SponsorsController < ApplicationController
   end
 
   def new
-    if_logged_in { @sponsor = Sponsor.new photo_url: "http://placekitten.com/g/200/200" }
+    if_logged_in { @sponsor = Sponsor.new }
   end
 
   def create
