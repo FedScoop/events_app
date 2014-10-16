@@ -23,6 +23,7 @@ class SponsorsController < ApplicationController
   def create
     sponsor = Sponsor.create sponsor_params
     if sponsor.save!
+      Delayed::Worker.new.work_off
       flash[:message] = sponsor.name + " created successfully!"
       redirect_to sponsor_path(sponsor)
     else
@@ -38,6 +39,7 @@ class SponsorsController < ApplicationController
   def update
     sponsor = Sponsor.find_by_id params[:id]
     Sponsor.update sponsor.id, sponsor_params
+    Delayed::Worker.new.work_off
     redirect_to sponsor_path(sponsor)
   end
 
