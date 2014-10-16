@@ -1,11 +1,18 @@
 %h1 New Sponsor
 %br
-%img{ src: "#{@sponsor.photo_url}" }
-Photo uploading and changing coming soon.
 %br
-= form_for @sponsor do |f|
-  Name:
-  = f.text_field :name, required: true
-  %br
-  = f.hidden_field :photo_url, value: @sponsor.photo_url
-  = f.submit "Submit"
+.form
+  = form_for @sponsor, html: { id: 'new-sponsor-form' } do |f|
+    Name:
+    = f.text_field :name, required: true
+    %br
+    Image:
+    %span{ style: 'color:red;' } PLEASE MAKE SURE IMAGE IS SQUARE.
+    %br
+    If it isn't already square, it will be cropped to make it square automatically and may not look good.
+    %br
+    Also make sure it is as high resolution as possible.
+    %br
+    = f.file_field :photo
+    %br
+    = f.submit "Submit"
