@@ -1,7 +1,7 @@
 %h1 Edit #{@speaker.name}
 %br
 .form
-  %img{ src: "#{@speaker.photo.url :medium}" }
+  %img{ src: "#{@speaker.photo.url :medium}", width: '200', height: '200' }
   %br
   = form_for @speaker, html: { id: 'edit-speaker-form' } do |f|
     First Name:
