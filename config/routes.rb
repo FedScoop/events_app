@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   get 'about/request-to-speak' => 'about#request_to_speak'
 
   # USERS -----------------------------------------------------------------
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :edit, :update]
   get 'users/validate/:id' => 'users#validate', as: 'validate_user'
   get 'dashboard' => 'users#dashboard', as: 'dashboard'
 
