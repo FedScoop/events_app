@@ -1,6 +1,6 @@
 %h1= @sponsor.name + " (Sponsor)"
 %hr
-%img{ src: "#{@sponsor.photo_url}" }
+%img{ src: "#{@sponsor.photo.url :medium}", width: '200', height: '200' }
 %br
 %br
 %p Events #{@sponsor.name} has sponsored:
