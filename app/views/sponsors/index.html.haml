@@ -2,7 +2,12 @@
 %a{ href: "#{new_sponsor_path}" } Add new sponsor
 %br
 %br
-%ul.sponsor-list
+
+.sponsor-list
   - @sponsors.each do |sponsor|
-    %li.sponsor-item
-      %a{ href: "#{sponsor_path sponsor}" }= sponsor.name
+    .sponsor-card
+      %a{ href: "#{sponsor_path sponsor}" }
+        %img{ src: "#{sponsor.photo.url :medium}", width: "200", height: '200' }
+      %br
+      %p
+        %a.sponsor-name{ href: "#{sponsor_path sponsor}" }= sponsor.name

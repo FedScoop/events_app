@@ -17,12 +17,13 @@ class SponsorsController < ApplicationController
   end
 
   def new
-    if_logged_in { @sponsor = Sponsor.new photo_url: "http://placekitten.com/g/200/200" }
+    if_logged_in { @sponsor = Sponsor.new }
   end
 
   def create
     sponsor = Sponsor.create sponsor_params
     if sponsor.save!
+      Delayed::Worker.new.work_off
       flash[:message] = sponsor.name + " created successfully!"
       redirect_to sponsor_path(sponsor)
     else
@@ -37,8 +38,18 @@ class SponsorsController < ApplicationController
 
   def update
     sponsor = Sponsor.find_by_id params[:id]
-    Sponsor.update sponsor.id, sponsor_params
-    redirect_to sponsor_path(sponsor)
+    if Sponsor.update sponsor.id, sponsor_params
+      Delayed::Worker.new.work_off
+      if params[:remove_photo]
+        sponsor.photo = nil
+        sponsor.save!
+      end
+      flash[:message] = sponsor.name + " updated successfully!"
+      redirect_to sponsor_path(sponsor)
+    else
+      flash[:message] = "Oops, something went wrong."
+      redirect_to edit_sponsor_path(sponsor)
+    end
   end
 
   def destroy
@@ -56,7 +67,7 @@ class SponsorsController < ApplicationController
   private
 
   def sponsor_params
-    params.require(:sponsor).permit(:name, :photo_url)
+    params.require(:sponsor).permit(:name, :photo)
   end
 
 end

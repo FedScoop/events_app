@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 5.times do
-  Event.create(name: Faker::Company.name,
+  Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                date: DateTime.now.advance(days: (1..100).to_a.sample))
 end
 5.times do
-  Event.create(name: Faker::Company.name,
+  Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
 end
 
@@ -25,18 +25,17 @@ end
                                last_name: Faker::Name.last_name,
                                job_title: Faker::Name.title,
                                employer: agencies.sample,
-                               bio: Faker::Lorem.paragraph(5),
-                               photo_url: "http://placekitten.com/g/200/200")
+                               bio: Faker::Lorem.paragraph(5))
   Event.all.sample.speakers << new_speaker
 end
 
 10.times do
-  new_sponsor = Sponsor.create(name: Faker::Company.name, photo_url: "http://placekitten.com/g/200/200")
+  new_sponsor = Sponsor.create(name: Faker::Company.name)
   Event.all.sample.sponsors << new_sponsor
 end
 
 10.times do
-  Venue.create(name: Faker::Company.name,
+  Venue.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                street: Faker::Address.street_address,
                city: Faker::Address.city,
                state: Faker::Address.state_abbr,

@@ -5,7 +5,7 @@
   - @speakers.each do |speaker|
     .speaker-card
       %a{ href: "#{speaker_path speaker}" }
-        %img{ src: "#{speaker.photo_url}" }
+        %img{ src: "#{speaker.photo.url :medium}", width: "200", height: '200' }
       %br
       %p
         %a.speaker-name{ href: "#{speaker_path speaker}" }

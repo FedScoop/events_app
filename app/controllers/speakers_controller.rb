@@ -21,14 +21,25 @@ class SpeakersController < ApplicationController
   end
 
   def update
+    speaker = Speaker.find_by_id params[:id]
     s_params = speaker_params
     s_params[:employer] = Agency.find_by_id s_params[:employer]
-    Speaker.update(params[:id], s_params)
-    redirect_to speaker_path(Speaker.find_by_id params[:id])
+    if Speaker.update speaker.id, s_params
+      Delayed::Worker.new.work_off
+      if params[:remove_photo]
+        speaker.photo = nil
+        speaker.save!
+      end
+      flash[:message] = speaker.name + " updated successfully!"
+      redirect_to speaker_path(speaker)
+    else
+      flash[:message] = "Oops, something went wrong"
+      redirect_to edit_speaker_path(speaker)
+    end
   end
 
   def new
-    if_logged_in { @speaker = Speaker.new(photo_url: "http://placekitten.com/g/200/200") }
+    if_logged_in { @speaker = Speaker.new }
   end
 
   def create
@@ -36,8 +47,12 @@ class SpeakersController < ApplicationController
     s_params[:employer] = Agency.find_by_id s_params[:employer]
     @speaker = Speaker.new(s_params)
     if @speaker.save
+      Delayed::Worker.new.work_off
       flash[:message] = "Created #{@speaker.name} successfully!"
       redirect_to speaker_path(@speaker)
+    else
+      flash[:message] = "Oops, something went wrong"
+      redirect_to new_speaker_path
     end
   end
 
@@ -56,7 +71,7 @@ class SpeakersController < ApplicationController
   private
 
   def speaker_params
-    params.require(:speaker).permit(:first_name, :last_name, :job_title, :employer, :bio, :photo_url)
+    params.require(:speaker).permit(:first_name, :last_name, :job_title, :employer, :bio, :photo)
   end
 
 end

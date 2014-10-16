@@ -1,27 +1,36 @@
 %h1 New Speaker
 %br
-%img{ src: "#{@speaker.photo_url}" }
-Photo uploading and changing coming soon.
-%br
-= form_for @speaker do |f|
-  First Name:
-  = f.text_field :first_name, required: true
-  %br
-  Last Name:
-  = f.text_field :last_name, required: true
-  %br
-  Job Title:&nbsp&nbsp&nbsp&nbsp
-  = f.text_field :job_title, required: true, style: "width: 300px;"
-  %br
-  Employer:
-  = f.collection_select :employer, Agency.order(:name),:id,:name
-  / %br
-  Need to add a new Employer?
-  %a{ href: "#{new_agency_path}", target: "_blank" } Click here
-  %br
-  Bio:
-  %br
-  = f.text_area :bio, {rows: "5", cols: "50", required: true}
-  %br
-  = f.hidden_field :photo_url, value: @speaker.photo_url
-  = f.submit "Submit"
+.form
+  = form_for @speaker, html: { id: 'new-speaker-form' } do |f|
+    First Name:
+    = f.text_field :first_name, required: true
+    %br
+    Last Name:
+    = f.text_field :last_name, required: true
+    %br
+    Job Title:&nbsp&nbsp&nbsp&nbsp
+    = f.text_field :job_title, required: true, style: "width: 300px;"
+    %br
+    Employer:
+    = f.collection_select :employer, Agency.order(:name),:id,:name
+    / %br
+    Need to add a new Employer?
+    %a{ href: "#{new_agency_path}", target: "_blank" } Click here
+    %br
+    Bio:
+    %br
+    = f.text_area :bio, {rows: "5", cols: "50", required: true}
+    %br
+    Image:
+    %span{ style: 'color:red;' } PLEASE MAKE SURE IMAGE IS SQUARE.
+    %br
+    If it isn't already square, it will be cropped to make it square automatically and may not look good.
+    %br
+    Also make sure it is as high resolution as possible.
+    %br
+    = f.file_field :photo
+    %br
+    = f.submit "Submit"
+
+.wait-overlay
+  %img{ src: '/images/loading.gif' }
