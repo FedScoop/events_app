@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
     user.email = user.email.strip
     user.email = user.email.downcase
   }
+
+  def name
+    return "#{self.first_name} #{self.last_name}"
+  end
+
+  alias :to_s :name
+
 end
