@@ -29,6 +29,9 @@
     %br
     = f.file_field :photo
     %br
+    Remove photo?
+    = check_box_tag :remove_photo
+    %br
     = f.submit "Save", onclick: "return confirm('Are you sure you want to make these changes to #{@speaker.name}?')"
 
 .wait-overlay
