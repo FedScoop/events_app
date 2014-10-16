@@ -11,4 +11,11 @@ sponsorWaitingOverlay = ->
       true
 
 $ ->
+
+  $list = $(".sponsor-list").imagesLoaded ->
+    $list.isotope({
+      itemSelector: '.sponsor-card'
+      layoutMode: 'fitRows'
+    })
+
   sponsorWaitingOverlay()
