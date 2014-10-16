@@ -26,7 +26,11 @@ class SpeakersController < ApplicationController
     s_params[:employer] = Agency.find_by_id s_params[:employer]
     if Speaker.update speaker.id, s_params
       Delayed::Worker.new.work_off
-      flash[:message] = "Speaker updated successfully!"
+      if params[:remove_photo]
+        speaker.photo = nil
+        speaker.save!
+      end
+      flash[:message] = speaker.name + " updated successfully!"
       redirect_to speaker_path(speaker)
     else
       flash[:message] = "Oops, something went wrong"
