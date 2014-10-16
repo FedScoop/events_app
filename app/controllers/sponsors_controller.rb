@@ -38,9 +38,18 @@ class SponsorsController < ApplicationController
 
   def update
     sponsor = Sponsor.find_by_id params[:id]
-    Sponsor.update sponsor.id, sponsor_params
-    Delayed::Worker.new.work_off
-    redirect_to sponsor_path(sponsor)
+    if Sponsor.update sponsor.id, sponsor_params
+      Delayed::Worker.new.work_off
+      if params[:remove_photo]
+        sponsor.photo = nil
+        sponsor.save!
+      end
+      flash[:message] = sponsor.name + " updated successfully!"
+      redirect_to sponsor_path(sponsor)
+    else
+      flash[:message] = "Oops, something went wrong."
+      redirect_to edit_sponsor_path(sponsor)
+    end
   end
 
   def destroy
