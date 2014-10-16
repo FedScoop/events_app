@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find_by_id(params[:id])
+    user = current_user
     if logged_in? && user.validated
       @user = user
     else
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    logged_in? ? @user = current_user : not_logged_in
+    if_logged_in { @user = current_user }
   end
 
   private
