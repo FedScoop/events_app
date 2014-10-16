@@ -21,6 +21,8 @@
           %a{ href: "#" }= event.name
   - else
     #{@speaker.name} hasn't spoken at any events
+- if @speaker.govie
+  %span{ style: 'color:blue;' } #{@speaker.name} is a government employee
 %br
 %br
 %a{ href: "#{edit_speaker_path @speaker}" } Edit #{@speaker.name}
