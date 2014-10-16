@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 5.times do
-  Event.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
+  Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                date: DateTime.now.advance(days: (1..100).to_a.sample))
 end
 5.times do
-  Event.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
+  Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
 end
 
@@ -35,7 +35,7 @@ end
 end
 
 10.times do
-  Venue.create(name: Faker::Lorem.sentence(word_count = (1..3).to_a.sample),
+  Venue.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
                street: Faker::Address.street_address,
                city: Faker::Address.city,
                state: Faker::Address.state_abbr,
