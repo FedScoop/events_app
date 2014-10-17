@@ -7,4 +7,8 @@ class Sponsor < ActiveRecord::Base
 
   process_in_background :photo
 
+  def to_s
+    self.name
+  end
+
 end
