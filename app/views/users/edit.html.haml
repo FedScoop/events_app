@@ -1,0 +1,19 @@
+%h1 Edit Your Profile
+%br
+%br
+.form
+  = form_for @user do |f|
+    First Name:
+    = f.text_field :first_name
+    %br
+    Last Name:
+    = f.text_field :last_name
+    %br
+    = f.submit "Save"
+  %br
+  %a{ href: "#" } Edit email address
+  %br
+  %a{ href: "#" } New Password
+
+.wait-overlay
+  %img{ src: '/images/loading.gif' }
