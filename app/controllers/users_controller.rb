@@ -68,6 +68,15 @@ class UsersController < ApplicationController
   def edit_password
     if_logged_in { @user = current_user }
   end
+
+  def update_password
+    user = current_user
+    if user.authenticate params[:old_password]
+      User.update user.id, user_params
+      flash[:message] = "Password Updated Successfully"
+      redirect_to user_profile_path
+    else
+      flash[:message] = "Incorrect password. Try again."
     end
   end
 
