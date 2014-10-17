@@ -1,7 +1,8 @@
-User:
+%h1= @user.name + "'s Profile"
 %br
-ID:
-= @user.id
 %br
 Email:
 = @user.email
+%br
+%br
+%a{ href: "#{edit_user_path @user}" } Edit your account information

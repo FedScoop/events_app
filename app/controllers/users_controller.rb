@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find_by_id(params[:id])
+    user = current_user
     if logged_in? && user.validated
       @user = user
     else
@@ -44,13 +44,46 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    logged_in? ? @user = current_user : not_logged_in
+    if_logged_in { @user = current_user }
+  end
+
+  def edit
+    if_logged_in { @user = current_user }
+  end
+
+  def update
+    user = current_user
+    if !user_params[:email].match /[^@]+@fedscoop.com/
+      flash[:message] = "Email needs to be an '@fedscoop.com' address."
+      redirect_to edit_user_path
+    elsif User.update user.id, user_params
+      flash[:message] = "Your profile updated successfully!"
+      redirect_to user_profile_path
+    else
+      flash[:message] = "Oops, something went wrong!"
+      redirect_to edit_user_path
+    end
+  end
+
+  def edit_password
+    if_logged_in { @user = current_user }
+  end
+
+  def update_password
+    user = current_user
+    if user.authenticate params[:old_password]
+      User.update user.id, user_params
+      flash[:message] = "Password Updated Successfully"
+      redirect_to user_profile_path
+    else
+      flash[:message] = "Incorrect password. Try again."
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :error)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
 end

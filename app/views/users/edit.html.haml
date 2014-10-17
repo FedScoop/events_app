@@ -1,0 +1,19 @@
+%h1 Edit Your Profile
+%br
+%br
+.form
+  = form_for @user do |f|
+    First Name:
+    = f.text_field :first_name
+    %br
+    Last Name:
+    = f.text_field :last_name
+    %br
+    Email Address:
+    = f.text_field :email, style: "width:300px;"
+    %br
+    = f.submit "Save"
+  %a{ href: "#{edit_user_password_path}" } Update Password Instead
+
+.wait-overlay
+  %img{ src: '/images/loading.gif' }
