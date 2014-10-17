@@ -13,10 +13,7 @@
     = f.text_field :email, style: "width:300px;"
     %br
     = f.submit "Save"
-  %br
-  %a{ href: "#" } Edit email address
-  %br
-  %a{ href: "#" } New Password
+  %a{ href: "#{edit_user_password_path}" } Update Password Instead
 
 .wait-overlay
   %img{ src: '/images/loading.gif' }
