@@ -47,6 +47,10 @@ class UsersController < ApplicationController
     if_logged_in { @user = current_user }
   end
 
+  def edit
+    if_logged_in { @user = current_user }
+  end
+
   private
 
   def user_params
