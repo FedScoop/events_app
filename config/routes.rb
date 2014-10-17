@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   get 'users/profile' => 'users#show', as: 'user_profile'
   get 'dashboard' => 'users#dashboard', as: 'dashboard'
   get 'users/edit' => 'users#edit', as: 'edit_user'
+  get 'users/edit/password' => 'users#edit_password', as: 'edit_user_password'
   patch 'users/update' => 'users#update', as: 'user'
 
   # SESSIONS --------------------------------------------------------------
