@@ -53,7 +53,10 @@ class UsersController < ApplicationController
 
   def update
     user = current_user
-    if User.update user.id, user_params
+    if !user_params[:email].match /[^@]+@fedscoop.com/
+      flash[:message] = "Email needs to be an '@fedscoop.com' address."
+      redirect_to edit_user_path
+    elsif User.update user.id, user_params
       flash[:message] = "Your profile updated successfully!"
       redirect_to user_profile_path
     else
