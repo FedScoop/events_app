@@ -51,6 +51,16 @@ class UsersController < ApplicationController
     if_logged_in { @user = current_user }
   end
 
+  def update
+    user = current_user
+    if User.update user.id, user_params
+      flash[:message] = "Your profile updated successfully!"
+      redirect_to user_profile_path
+    else
+      flash[:message]
+    end
+  end
+
   private
 
   def user_params
