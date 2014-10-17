@@ -60,7 +60,14 @@ class UsersController < ApplicationController
       flash[:message] = "Your profile updated successfully!"
       redirect_to user_profile_path
     else
-      flash[:message]
+      flash[:message] = "Oops, something went wrong!"
+      redirect_to edit_user_path
+    end
+  end
+
+  def edit_password
+    if_logged_in { @user = current_user }
+  end
     end
   end
 
