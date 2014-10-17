@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get 'users/edit' => 'users#edit', as: 'edit_user'
   get 'users/edit/password' => 'users#edit_password', as: 'edit_user_password'
   patch 'users/update' => 'users#update', as: 'user'
+  patch 'users/update/password' => 'users#update_password', as: 'update_user_password'
 
   # SESSIONS --------------------------------------------------------------
   get 'login' => 'sessions#new'
