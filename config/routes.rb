@@ -88,4 +88,7 @@ Rails.application.routes.draw do
 
   # AGENCIES --------------------------------------------------------------
   resources :agencies
+
+  # EVENTS ----------------------------------------------------------------
+  resources :events
 end
