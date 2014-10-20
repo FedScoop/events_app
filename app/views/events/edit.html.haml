@@ -1,0 +1,16 @@
+%h1= "Edit " + @event.name
+%br
+%br
+= form_for @event, html: { class: "edit-event-form" } do |f|
+  Name:
+  = f.text_field :name
+  %br
+  Date & Time:
+  = f.datetime_select :date
+  %br
+  Location:
+  = f.collection_select :venue, Venue.order(:name),:id,:name, selected: @event.venue.id
+  Need to add a new venue? Do so <a href="#{new_venue_path}" target="_blank">here</a> first.
+  %br
+  Speakers:
+  %br
