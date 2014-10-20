@@ -1,0 +1,34 @@
+%h1= @event.name + " (#{@event.date.year})"
+%br
+%br
+Date & Time:
+%br
+= @event.date.strftime "%B %e, %Y at %l:%M %p"
+%br
+%br
+Location:
+%br
+%a{ href: "#{venue_path @event.venue}" }= @event.venue
+%br
+%br
+Speakers:
+%ul
+  - @event.speakers.each do |speaker|
+    %li
+      %a{ href: "#{speaker_path speaker}" }= speaker
+%br
+%br
+Agenda:
+%br
+= @event.agenda ? @event.agenda : "No agenda has been set for this event yet."
+%br
+%br
+Registration URL:
+%br
+- if @event.reg_url
+  %a{ href: "#{@event.reg_url}" }= @event.reg_url
+- else
+  = "No registration URL has been set yet"
+%br
+%br
+%a{ href: "#{edit_event_path @event}" } Edit #{@event}
