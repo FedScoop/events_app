@@ -13,7 +13,7 @@ Location:
 %br
 Speakers:
 %ul
-  - @event.speakers.each do |speaker|
+  - @event.speakers.order(:last_name).each do |speaker|
     %li
       %a{ href: "#{speaker_path speaker}" }= speaker
 %br
