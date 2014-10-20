@@ -18,4 +18,17 @@ class Event < ActiveRecord::Base
     }
   end
 
+  def self.events_by_year
+    Event.all.order("date DESC").inject(Hash.new) { |hash, event|
+      if hash[event.date.year.to_s]
+        hash[event.date.year.to_s] << event
+        hash[event.date.year.to_s].sort_by! { |event| event.date }.reverse!
+        hash
+      else
+        hash[event.date.year.to_s] = [event]
+        hash
+      end
+    }
+  end
+
 end
