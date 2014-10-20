@@ -1,0 +1,11 @@
+%h1 List of Events
+%br
+%br
+- @events_by_year.each do |year, events_arr|
+  %h2= year
+  %br
+  %ul
+    - events_arr.each do |event|
+      %li
+        %a{ href: "#{event_path event}" } #{event.name} (#{event.date.strftime "%b. %e"})
+  %br
