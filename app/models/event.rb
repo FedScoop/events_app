@@ -31,6 +31,10 @@ class Event < ActiveRecord::Base
     }
   end
 
+  def agenda
+    YAML.load(super) if super
+  end
+
   def to_s
     self.name
   end
