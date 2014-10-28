@@ -1,3 +1,4 @@
+- counter = 0
 %h1= "Edit " + @event.name
 %br
 %br
@@ -23,8 +24,20 @@
           .checkbox= b.label { b.check_box + " " + b.text }
   %div{ style: "clear:both;" }
   %br
-  / .add-agenda
-  /   .agenda-item
-  /     = label_tag(:time)
-  /     = text_field_tag :time, html:
+  .add-agenda
+    Agenda:
+    %br
+    %a.add-agenda-item Add timeslot
+    %br
+    - if @event.agenda
+      - @event.agenda.each do |item|
+        = render partial: "agenda_form", locals: { event: @event, item: item, counter: counter }
+        - counter += 1
+    - else
+      = render partial: "agenda_form", locals: { event: @event, item: nil, counter: counter }
+      - counter += 1
   = f.submit
+.new-agenda-item{ style: "display:none;" }
+  = render partial: "agenda_form", locals: { event: @event, item: nil, counter: counter }
+.counter{ style: "display:none;" }
+  = counter
