@@ -12,13 +12,13 @@ addAgendaItem = ->
     $new.children().each (i) ->
       if String($(this).attr("id")).indexOf("time_") > -1
         $(this).attr("id", "agenda_" + counter + "_time_")
-        $(this).attr("name", "agenda[" + counter + "[time[]]]")
+        $(this).attr("name", "agenda[" + counter + "[time]]")
       else if String($(this).attr("id")).indexOf("title_") > -1
         $(this).attr("id", "agenda_" + counter + "_title_")
-        $(this).attr("name", "agenda[" + counter + "[title[]]]")
+        $(this).attr("name", "agenda[" + counter + "[title]]")
       else if String($(this).attr("id")).indexOf("_speaker") > -1
         $(this).attr("id", "agenda_" + counter + "_speaker")
-        $(this).attr("name", "agenda[" + counter + "[title[]]]")
+        $(this).attr("name", "agenda[" + counter + "[speaker]]")
     counter += 1
     $(".counter").html counter
 
