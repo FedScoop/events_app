@@ -1,0 +1,8 @@
+.agenda-form
+  = label_tag 'time:'
+  = text_field_tag "agenda[#{counter}[time[]]]", (item[:time] if item)
+  = label_tag 'title:'
+  = text_field_tag "agenda[#{counter}[title[]]]", (item[:title] if item)
+  = label_tag 'speaker:'
+  = select_tag "agenda[#{counter}[speaker]]", options_from_collection_for_select(event.speakers, "id", "name"), include_blank: true
+  %a.del-agenda-item Delete this item
