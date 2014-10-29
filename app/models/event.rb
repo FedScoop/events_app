@@ -4,6 +4,10 @@ class Event < ActiveRecord::Base
   has_many :speakers, through: :speaking_engagements
   has_many :sponsors, through: :sponsorships
   belongs_to :venue
+  before_save { |event|
+    speaker_objects_to_ids
+    event.agenda = event.agenda.to_yaml if event.agenda
+  }
 
   def self.past_events
     Event.where('date < ?', DateTime.now).order("date DESC").inject(Hash.new) { |hash, event|
@@ -39,6 +43,16 @@ class Event < ActiveRecord::Base
 
   def to_s
     self.name
+  end
+
+  private
+
+  def speaker_objects_to_ids
+    if self.agenda.class == Array
+      self.agenda.each do |i|
+        i[:speaker] = i[:speaker].id
+      end
+    end
   end
 
 end
