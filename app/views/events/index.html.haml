@@ -7,5 +7,10 @@
   %ul
     - events_arr.each do |event|
       %li
+        - if !event.live
+          %span.not-live (Not Live)
+        - else
+          %span.live (Live)
         %a{ href: "#{event_path event}" } #{event.name} (#{event.date.strftime "%b. %e"})
+
   %br
