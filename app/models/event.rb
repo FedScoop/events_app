@@ -55,4 +55,11 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def speaker_ids_to_objects(agenda)
+    agenda.each do |i|
+      i[:speaker] = Speaker.find_by_id(i[:speaker].to_i)
+    end
+    agenda
+  end
+
 end
