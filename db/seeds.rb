@@ -6,13 +6,28 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+sample_agenda = [
+  {
+    time: "7:30 a.m. – 8:30 a.m.",
+    title: "Registration & Networking Breakfast",
+    speaker: nil
+  },
+  {
+    time: "8:30 a.m. – 8:35 a.m.",
+    title: "Welcome Remarks",
+    speaker: nil
+  }
+]
+
 5.times do
   Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
-               date: DateTime.now.advance(days: (1..100).to_a.sample))
+               date: DateTime.now.advance(days: (1..100).to_a.sample),
+               live: [true, false].sample)
 end
 5.times do
   Event.create(name: Faker::Lorem.sentence((1..2).to_a.sample),
-               date: DateTime.now.advance(days: (-1600..-1).to_a.sample))
+               date: DateTime.now.advance(days: (-1600..-1).to_a.sample),
+               live: [true, false].sample)
 end
 
 25.times do
@@ -50,3 +65,12 @@ end
 
 About.create(homepage_text: Faker::Lorem.paragraphs(2).join("\n"),
              about_page_text: Faker::Lorem.paragraphs(2).join("\n"))
+
+Event.all.each do |e|
+  speakers = e.speakers
+  e.agenda = sample_agenda
+  e.agenda.each do |a|
+    a[:speaker] = speakers.sample
+  end
+  e.save
+end
