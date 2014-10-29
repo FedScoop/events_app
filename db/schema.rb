@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020152115) do
+ActiveRecord::Schema.define(version: 20141029134703) do
 
   create_table "abouts", force: true do |t|
     t.string "homepage_text"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141020152115) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "agenda"
+    t.boolean  "live"
   end
 
   create_table "speakers", force: true do |t|
