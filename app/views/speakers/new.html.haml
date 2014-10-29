@@ -2,26 +2,26 @@
 %br
 .form
   = form_for @speaker, html: { id: 'new-speaker-form' } do |f|
-    First Name:
+    %b First Name:
     = f.text_field :first_name, required: true
     %br
-    Last Name:
+    %b Last Name:
     = f.text_field :last_name, required: true
     %br
-    Job Title:&nbsp&nbsp&nbsp&nbsp
+    %b Job Title:&nbsp&nbsp&nbsp&nbsp
     = f.text_field :job_title, required: true, style: "width: 300px;"
     %br
-    Employer:
+    %b Employer:
     = f.collection_select :employer, Agency.order(:name),:id,:name
     / %br
     Need to add a new Employer?
     %a{ href: "#{new_agency_path}", target: "_blank" } Click here
     %br
-    Bio:
+    %b Bio:
     %br
     = f.text_area :bio, {rows: "5", cols: "50", required: true}
     %br
-    Image:
+    %b Image:
     %span{ style: 'color:red;' } PLEASE MAKE SURE IMAGE IS SQUARE.
     %br
     If it isn't already square, it will be cropped to make it square automatically and may not look good.
@@ -30,7 +30,7 @@
     %br
     = f.file_field :photo
     %br
-    Work for the Government?
+    %b Work for the Government?
     = f.check_box :govie
     %br
     = f.submit "Submit"

@@ -3,7 +3,7 @@
 %img{ src: "#{@sponsor.photo.url :medium}", width: '200', height: '200' }
 %br
 %br
-%p Events #{@sponsor.name} has sponsored:
+%b Events #{@sponsor.name} has sponsored:
 %p
   - if @sponsor.events.first
     %ul

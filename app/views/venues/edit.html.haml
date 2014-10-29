@@ -1,16 +1,16 @@
 %h1 Edit #{@venue.name}
 %br
 = form_for @venue do |f|
-  Name:
+  %b Name:
   = f.text_field :name
   %br
-  Street Address:
+  %b Street Address:
   = f.text_field :street, style: "width: 300px;"
   %br
-  City:
+  %b City:
   = f.text_field :city, style: "width: 300px;"
   %br
-  State:
+  %b State:
   = f.select :state, us_states, selected: @venue.state
   %br
   = f.submit "Save", onclick: "return confirm('Are you sure you want to make these changes to #{@venue.name}?')"

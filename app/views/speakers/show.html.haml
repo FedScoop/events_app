@@ -3,16 +3,16 @@
 %img{ src: "#{@speaker.photo.url(:medium)}", height: '200', width: '200' }
 %br
 %br
-%p Job Title: #{@speaker.job_title}
+%b Job Title: #{@speaker.job_title}
 %p
   Employer:
   %a{ href: "#{agency_path @speaker.employer}" }= @speaker.employer
 %p
-  Bio:
+  %b Bio:
   %br
   = @speaker.bio
 %br
-%p Events #{@speaker.name} has spoken / will speak at:
+%b Events #{@speaker.name} has spoken / will speak at:
 %p
   - if @speaker.events.first
     %ul

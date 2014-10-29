@@ -3,13 +3,13 @@
 %br
 .form
   = form_for @user do |f|
-    First Name:
+    %b First Name:
     = f.text_field :first_name
     %br
-    Last Name:
+    %b Last Name:
     = f.text_field :last_name
     %br
-    Email Address:
+    %b Email Address:
     = f.text_field :email, style: "width:300px;"
     %br
     = f.submit "Save"

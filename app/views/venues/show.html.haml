@@ -1,13 +1,13 @@
 %h1= @venue.name + " (Venue)"
 %br
 %br
-%p Address:
+%b Address:
 %p
   = @venue.street
   %br
   = "#{@venue.city}, #{@venue.state} #{@venue.zip}"
 %br
-%p Events at #{@venue.name}:
+%b Events at #{@venue.name}:
 %p
   - if @venue.events.first
     %ul

@@ -1,20 +1,20 @@
 %h1 Sign up
 %br
 = form_for @user, url: { action: 'create' } do |f|
-  First Name:
+  %b First Name:
   = f.text_field :first_name, required: true
   %br
-  Last Name:
+  %b Last Name:
   = f.text_field :last_name, required: true
   %br
-  Email:
+  %b Email:
   = f.email_field :email, required: true, pattern: '[^@]+@fedscoop.com', class: 'new-user-email'
   %span.email-valid Email must be a "@fedscoop.com" email.
   %br
-  Password:
+  %b Password:
   = f.password_field :password, required: true, class: 'new-user-pass'
   %br
-  Confirm Password:
+  %b Confirm Password:
   = f.password_field :password_confirmation, required: true, class: 'new-user-pass-conf'
   %span.password-error
   %br

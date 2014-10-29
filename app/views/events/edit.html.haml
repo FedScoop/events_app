@@ -3,17 +3,17 @@
 %br
 %br
 = form_for @event, html: { class: "edit-event-form" } do |f|
-  Name:
+  %b Name:
   = f.text_field :name
   %br
-  Date & Time:
+  %b Date & Time:
   = f.datetime_select :date
   %br
-  Location:
+  %b Location:
   = f.collection_select :venue, Venue.order(:name),:id,:name, selected: @event.venue.id
   Need to add a new venue? Do so <a href="#{new_venue_path}" target="_blank">here</a> first.
   %br
-  Speakers:
+  %b Speakers:
   %br
   .speakers-select
     - num = Speaker.count
@@ -24,14 +24,14 @@
           .checkbox= b.label { b.check_box + " " + b.text }
   %div{ style: "clear:both;" }
   %br
-  Should this event show up on the site?
+  %b Should this event show up on the site?
   = f.check_box :live
   %br
-  URL for event website:
+  %b URL for event website:
   = f.text_field :site_url
   %br
   .add-agenda
-    Agenda:
+    %b Agenda:
     %br
     %a.add-agenda-item Add timeslot
     %br
