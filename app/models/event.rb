@@ -38,7 +38,13 @@ class Event < ActiveRecord::Base
   end
 
   def agenda
-    YAML.load(super) if super
+    return_value = super
+    if return_value.class == String
+      agenda = YAML.load(return_value) if return_value
+      return speaker_ids_to_objects agenda
+    else
+      return return_value
+    end
   end
 
   def to_s
