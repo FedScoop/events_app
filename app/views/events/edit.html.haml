@@ -24,6 +24,9 @@
           .checkbox= b.label { b.check_box + " " + b.text }
   %div{ style: "clear:both;" }
   %br
+  Should this event show up on the site?
+  = f.check_box :live
+  %br
   .add-agenda
     Agenda:
     %br
