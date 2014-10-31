@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       redirect_to dashboard_path
-    elsif @user
+    else @user
       flash[:message] = "Your email or password was incorect"
       redirect_to login_path
-    else
-      flash[:message] = "That email address is not in our database. Make a new account here."
-      redirect_to new_user_path
+    # else
+    #   flash[:message] = "That email address is not in our database. Make a new account here."
+    #   redirect_to new_user_path
     end
   end
 
