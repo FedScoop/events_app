@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    user_params[:email] = user_params[:email].downcase
     @user = User.new(user_params)
     @user.validated = false
     @user.admin = false
