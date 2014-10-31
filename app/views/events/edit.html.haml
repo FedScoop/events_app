@@ -24,7 +24,18 @@
           .checkbox= b.label { b.check_box + " " + b.text }
   %div{ style: "clear:both;" }
   %br
-  %b Should this event show up on the site?
+  %b Sponsors:
+  %br
+  .sponsors-select
+    - num = Sponsor.count
+    - slice_num = (num / 3) + (num % 3)
+    - Sponsor.order(:name).each_slice(slice_num) do |slice|
+      .sponsor-column
+        = f.collection_check_boxes(:sponsor_ids, slice, :id, :name) do |b|
+          .checkbox= b.label { b.check_box + " " + b.text }
+  %div{ style: "clear:both;" }
+  %br
+  %b Should this event go live?
   = f.check_box :live
   %br
   %b URL for event website:
