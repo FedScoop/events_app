@@ -18,6 +18,13 @@
       %a{ href: "#{speaker_path speaker}" }= speaker
 %br
 %br
+%b Sponsors
+%ul
+  - @event.sponsors.order(:name).each do |sponsor|
+    %li
+      %a{ href: "#{sponsor_path sponsor}" }= sponsor
+%br
+%br
 %b Agenda:
 %br
 - if @event.agenda
