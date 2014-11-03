@@ -23,6 +23,11 @@ class EventsController < ApplicationController
                       event["date(5i)"].to_i,
                       0,
                       ((Time.zone.utc_offset / 60) / 60).to_s)
+    speakers = lambda{
+      s = event[:speaker_ids]
+      s.map! { |x| x = Speaker.find_by_id(x.to_i) }
+      s
+    }.call
   end
 
 end
