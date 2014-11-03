@@ -13,9 +13,10 @@ class EventsController < ApplicationController
   end
 
   def update
+    this_event = Event.find_by_id params[:id]
     event = params[:event]
-    puts event[:date]
-    puts DateTime.new(event["date(1i)"].to_i,
+    levels = this_event.sponsorships.group("level").count.keys
+    date =  DateTime.new(event["date(1i)"].to_i,
                       event["date(2i)"].to_i,
                       event["date(3i)"].to_i,
                       event["date(4i)"].to_i,
