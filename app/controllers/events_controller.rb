@@ -32,6 +32,19 @@ class EventsController < ApplicationController
       v[:speaker] = Speaker.find_by_id v[:speaker].to_i
       c << v
     }
+    Hash[params[:sponsors].sort].each do |k,v|
+      v[:sponsor_ids].each do |id|
+        s = Sponsorship.new event_id: this_event.id,
+                            sponsor_id: id,
+                            level: v[:level]
+        if !s.save
+          sponsorship = Sponsorship.where(event_id: this_event.id, sponsor_id: id).first
+          Sponsorship.update sponsorship.id, { event_id: this_event.id,
+                                               sponsor_id: id,
+                                               level: v[:level] }
+        end
+      end
+    end
   end
 
 end
