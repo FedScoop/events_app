@@ -28,6 +28,10 @@ class EventsController < ApplicationController
       s.map! { |x| x = Speaker.find_by_id(x.to_i) }
       s
     }.call
+    agenda = Hash[params[:agenda].sort].inject([]) { |c, (k,v)|
+      v[:speaker] = Speaker.find_by_id v[:speaker].to_i
+      c << v
+    }
   end
 
 end
