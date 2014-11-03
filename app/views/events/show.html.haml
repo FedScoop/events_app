@@ -20,9 +20,14 @@
 %br
 %b Sponsors
 %ul
-  - @event.sponsors.order(:name).each do |sponsor|
-    %li
-      %a{ href: "#{sponsor_path sponsor}" }= sponsor
+  - @event.sponsorships.group("level").count.keys.each do |level|
+    - sponsors = @event.sponsorships.where(level: level).inject([]) { |arr,s| arr << s.sponsor }
+    %b= level
+    %ul
+      - sponsors.each do |s|
+        %li
+          %a{ href: "#{sponsor_path s}" }= s
+
 %br
 %br
 %b Agenda:
