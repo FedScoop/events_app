@@ -57,7 +57,7 @@
   .add-agenda
     %b Agenda:
     %br
-    %a.add-agenda-item Add timeslot
+    %a.add-agenda-item{ href: '#' } Add timeslot
     %br
     - if @event.agenda
       - @event.agenda.each do |item|
