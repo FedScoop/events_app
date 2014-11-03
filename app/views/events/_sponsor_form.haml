@@ -1,0 +1,15 @@
+.sponsor-form
+  %b Sponsorship Level:
+  = text_field_tag "sponsors[#{counter}][level]", (level if level)
+  %a.del-sponsor-item{ href: '#' } Delete this level
+  / = sponsors.ids
+  / = sponsors.inspect
+  .sponsors-select
+    - num = Sponsor.count
+    - slice_num = (num / 3) + (num % 3)
+    - Sponsor.order(:name).each_slice(slice_num) do |slice|
+      .sponsor-column
+        - slice.each do |s|
+          = check_box_tag "sponsors[#{counter}][sponsor_ids][]", s.id, (sponsors.include?(s) if sponsors)
+          = s
+          %br
