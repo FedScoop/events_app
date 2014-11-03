@@ -8,6 +8,10 @@ class EventsController < ApplicationController
     if_logged_in { @event = Event.find_by_id params[:id] }
   end
 
+  def new
+    if_logged_in { @event = Event.new }
+  end
+
   def edit
     if_logged_in { @event = Event.find_by_id params[:id] }
   end
