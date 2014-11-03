@@ -25,15 +25,22 @@
           .checkbox= b.label { b.check_box + " " + b.text }
   %div{ style: "clear:both;" }
   %br
-  %b Sponsors:
-  %br
-  .sponsors-select
-    - num = Sponsor.count
-    - slice_num = (num / 3) + (num % 3)
-    - Sponsor.order(:name).each_slice(slice_num) do |slice|
-      .sponsor-column
-        = f.collection_check_boxes(:sponsor_ids, slice, :id, :name) do |b|
-          .checkbox= b.label { b.check_box + " " + b.text }
+  .add-sponsor
+    %b Sponsors:
+    %br
+    %a.add-sponsor-item{ href: '#' } Add sponsorship level
+    %br
+    - if @event.sponsors.first
+      - sponsorships = @event.sponsorships
+      - sponsorships.group("level").count.keys.each do |level|
+        - sponsors_at_level = @event.sponsorships.where(level: level).inject([]) { |arr,s| arr << s.sponsor }
+        = render partial: "sponsor_form", locals: { event: @event, sponsors: sponsors_at_level, level: level, counter: sponsor_counter }
+        - sponsor_counter += 1
+        %div{ style: "clear:both;" }
+    - else
+      = render partial: 'sponsor_form', locals: { event: @event, counter: sponsor_counter, level: nil, sponsors: nil }
+      - sponsor_counter += 1
+      %div{ style: "clear:both;" }
   %div{ style: "clear:both;" }
   %br
   %b Should this event go live?
