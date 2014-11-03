@@ -21,8 +21,10 @@
     - slice_num = (num / 3) + (num % 3)
     - Speaker.order(:last_name).each_slice(slice_num) do |slice|
       .speaker-column
-        = f.collection_check_boxes(:speaker_ids, slice, :id, :name) do |b|
-          .checkbox= b.label { b.check_box + " " + b.text }
+        - slice.each do |s|
+          = check_box_tag "event[speaker_ids][]", s.id, @event.speakers.include?(s)
+          = s
+          %br
   %div{ style: "clear:both;" }
   %br
   .add-sponsor
