@@ -45,6 +45,7 @@ class EventsController < ApplicationController
         end
       end
     end
+    venue = Venue.find_by_id event[:venue]
   end
 
 end
