@@ -56,14 +56,27 @@ class Event < ActiveRecord::Base
   def speaker_objects_to_ids
     if self.agenda.class == Array
       self.agenda.each do |i|
-        i[:speaker] = i[:speaker].id
+        i[:speaker] = lambda{
+          if i[:speaker]
+            return i[:speaker].id
+          else
+            return nil
+          end
+        }.call
       end
     end
   end
 
   def speaker_ids_to_objects(agenda)
     agenda.each do |i|
-      i[:speaker] = Speaker.find_by_id(i[:speaker].to_i)
+      id = lambda {
+        if i[:speaker].class == Speaker
+          return i[:speaker].id
+        else
+          return i[:speaker].to_i
+        end
+      }.call
+      i[:speaker] = Speaker.find_by_id(id)
     end
     agenda
   end
