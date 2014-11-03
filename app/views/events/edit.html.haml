@@ -61,11 +61,11 @@
     %br
     - if @event.agenda
       - @event.agenda.each do |item|
-        = render partial: "agenda_form", locals: { event: @event, item: item, counter: counter }
-        - counter += 1
+        = render partial: "agenda_form", locals: { event: @event, item: item, counter: agenda_counter }
+        - agenda_counter += 1
     - else
-      = render partial: "agenda_form", locals: { event: @event, item: nil, counter: counter }
-      - counter += 1
+      = render partial: "agenda_form", locals: { event: @event, item: nil, counter: agenda_counter }
+      - agenda_counter += 1
   = f.submit
 .new-agenda-item{ style: "display:none;" }
   = render partial: "agenda_form", locals: { event: @event, item: nil, counter: counter }
