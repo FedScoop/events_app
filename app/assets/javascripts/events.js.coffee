@@ -47,7 +47,15 @@ addSponsorItem = ->
     counter += 1
     $(".sponsor-counter").html counter
 
+delSponsorItem = ->
+  $(".add-sponsor").on "click", ".del-sponsor-item", (e) ->
+    e.preventDefault()
+    $item = $(e.target).parent()
+    $item.hide ->
+      $item.remove()
+
 $ ->
   addAgendaItem()
   delAgendaItem()
   addSponsorItem()
+  delSponsorItem()
