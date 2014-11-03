@@ -46,6 +46,18 @@ class EventsController < ApplicationController
       end
     end
     venue = Venue.find_by_id event[:venue]
+    Event.update params[:id], { name: event[:name],
+                                date: date,
+                                site_url: (event[:site_url] unless event[:site_url] == ""),
+                                reg_url: (event[:reg_url] unless event[:reg_url] == ""),
+                                venue: venue,
+                                agenda: agenda,
+                                speakers: speakers,
+                                venue: venue,
+                                live: event[:live] }
+    flash[:message] = this_event.to_s + " updated successfully!"
+    redirect_to event_path(this_event)
+    return
   end
 
 end
