@@ -68,6 +68,8 @@
       - agenda_counter += 1
   = f.submit
 .new-agenda-item{ style: "display:none;" }
-  = render partial: "agenda_form", locals: { event: @event, item: nil, counter: counter }
-.counter{ style: "display:none;" }
-  = counter
+  = render partial: "agenda_form", locals: { event: @event, item: nil, counter: agenda_counter }
+.agenda-counter{ style: "display:none;" }
+  = agenda_counter
+.sponsor-counter{ style: "display:none;" }
+  = sponsor_counter
