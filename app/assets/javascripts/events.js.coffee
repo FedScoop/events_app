@@ -10,11 +10,11 @@ addAgendaItem = ->
     $(".add-agenda").append $(".new-agenda-item").html()
     $new = $ $(".add-agenda .agenda-form").last()
     $new.children().each (i) ->
-      if String($(this).attr("id")).indexOf("time_") > -1
-        $(this).attr("id", "agenda_" + counter + "_time_")
+      if String($(this).attr("id")).indexOf("_time") > -1
+        $(this).attr("id", "agenda_" + counter + "_time")
         $(this).attr("name", "agenda[" + counter + "[time]]")
-      else if String($(this).attr("id")).indexOf("title_") > -1
-        $(this).attr("id", "agenda_" + counter + "_title_")
+      else if String($(this).attr("id")).indexOf("_title") > -1
+        $(this).attr("id", "agenda_" + counter + "_title")
         $(this).attr("name", "agenda[" + counter + "[title]]")
       else if String($(this).attr("id")).indexOf("_speaker") > -1
         $(this).attr("id", "agenda_" + counter + "_speaker")
