@@ -69,6 +69,9 @@
   = f.submit
 .new-agenda-item{ style: "display:none;" }
   = render partial: "agenda_form", locals: { event: @event, item: nil, counter: agenda_counter }
+.new-sponsor-item{ style: "display:none;" }
+  = render partial: "sponsor_form", locals: { event: @event, counter: sponsor_counter, level: nil, sponsors: nil }
+  %div{ style: "clear:both;" }
 .agenda-counter{ style: "display:none;" }
   = agenda_counter
 .sponsor-counter{ style: "display:none;" }
