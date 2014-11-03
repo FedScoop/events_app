@@ -38,7 +38,8 @@
     %br
     = i[:title]
     %br
-    %a{ href: "#{speaker_path i[:speaker]}" }= i[:speaker]
+    - if i[:speaker]
+      %a{ href: "#{speaker_path i[:speaker]}" }= i[:speaker]
     %br
     %br
 - else
