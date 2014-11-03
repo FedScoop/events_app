@@ -6,7 +6,7 @@ addAgendaItem = ->
   $add = $ ".add-agenda-item"
   $(".add-agenda").on "click", ".add-agenda-item", (e) ->
     e.preventDefault()
-    counter = parseInt $(".counter").html()
+    counter = parseInt $(".agenda-counter").html()
     $(".add-agenda").append $(".new-agenda-item").html()
     $new = $ $(".add-agenda .agenda-form").last()
     $new.children().each (i) ->
@@ -20,7 +20,7 @@ addAgendaItem = ->
         $(this).attr("id", "agenda_" + counter + "_speaker")
         $(this).attr("name", "agenda[" + counter + "[speaker]]")
     counter += 1
-    $(".counter").html counter
+    $(".agenda-counter").html counter
 
 delAgendaItem = ->
   $del = $ ".del-agenda-item"
