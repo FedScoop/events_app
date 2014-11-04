@@ -32,23 +32,14 @@ class EventsController < ApplicationController
       s.map! { |x| x = Speaker.find_by_id(x.to_i) }
       s
     }.call
+    sponsors = lambda{
+      s = params[:sponsors].inject([]) { |arr,(k,v)| arr << v[:sponsor_ids] }.flatten
+      s.map! { |x| x = Sponsor.find_by_id x }
+    }.call
     agenda = Hash[params[:agenda].sort].inject([]) { |c, (k,v)|
       v[:speaker] = Speaker.find_by_id v[:speaker].to_i
       c << v
     }
-    Hash[params[:sponsors].sort].each do |k,v|
-      v[:sponsor_ids].each do |id|
-        s = Sponsorship.new event_id: this_event.id,
-                            sponsor_id: id,
-                            level: v[:level]
-        if !s.save
-          sponsorship = Sponsorship.where(event_id: this_event.id, sponsor_id: id).first
-          Sponsorship.update sponsorship.id, { event_id: this_event.id,
-                                               sponsor_id: id,
-                                               level: v[:level] }
-        end
-      end
-    end
     venue = Venue.find_by_id event[:venue]
     Event.update params[:id], { name: event[:name],
                                 date: date,
@@ -57,8 +48,15 @@ class EventsController < ApplicationController
                                 venue: venue,
                                 agenda: agenda,
                                 speakers: speakers,
+                                sponsors: sponsors,
                                 venue: venue,
                                 live: event[:live] }
+    Hash[params[:sponsors].sort].each do |k,v|
+      v[:sponsor_ids].each do |id|
+        sponsorship_id = Sponsorship.where(event_id: this_event.id, sponsor_id: id).first.id
+        Sponsorship.update sponsorship_id, level: v[:level]
+      end
+    end
     flash[:message] = this_event.to_s + " updated successfully!"
     redirect_to event_path(this_event)
     return
