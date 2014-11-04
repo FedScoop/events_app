@@ -62,4 +62,49 @@ class EventsController < ApplicationController
     return
   end
 
+  def create
+    event = params[:event]
+    date =  DateTime.new(event["date(1i)"].to_i,
+                         event["date(2i)"].to_i,
+                         event["date(3i)"].to_i,
+                         event["date(4i)"].to_i,
+                         event["date(5i)"].to_i,
+                         0,
+                         ((Time.zone.utc_offset / 60) / 60).to_s)
+    speakers = lambda{
+      s = event[:speaker_ids]
+      s.map! { |x| x = Speaker.find_by_id(x.to_i) }
+      s
+    }.call
+    sponsors = lambda{
+      s = params[:sponsors].inject([]) { |arr,(k,v)| arr << v[:sponsor_ids] }.flatten
+      s.map! { |x| x = Sponsor.find_by_id x }
+    }.call
+    venue = Venue.find_by_id event[:venue]
+    this_event = Event.new name: event[:name],
+                           date: date,
+                           site_url: (event[:site_url] == "" ? nil : event[:site_url]),
+                           reg_url: (event[:reg_url] == "" ? nil : event[:reg_url]),
+                           venue: venue,
+                           speakers: speakers,
+                           sponsors: sponsors,
+                           venue: venue,
+                           live: event[:live]
+    if this_event.save
+      Hash[params[:sponsors].sort].each do |k,v|
+        v[:sponsor_ids].each do |id|
+          sponsorship_id = Sponsorship.where(event_id: this_event.id, sponsor_id: id).first.id
+          Sponsorship.update sponsorship_id, level: v[:level]
+        end
+      end
+      flash[:message] = this_event.to_s + " created successfully!"
+      redirect_to event_path(this_event)
+      return
+    else
+      flash[:message] = "Something went wrong. Please try again."
+      redirect_to new_event_path
+      return
+    end
+  end
+
 end
