@@ -43,8 +43,8 @@ class EventsController < ApplicationController
     venue = Venue.find_by_id event[:venue]
     Event.update params[:id], { name: event[:name],
                                 date: date,
-                                site_url: (event[:site_url] unless event[:site_url] == ""),
-                                reg_url: (event[:reg_url] unless event[:reg_url] == ""),
+                                site_url: (event[:site_url] == "" ? nil : event[:site_url]),
+                                reg_url: (event[:reg_url] == "" ? nil : event[:reg_url]),
                                 venue: venue,
                                 agenda: agenda,
                                 speakers: speakers,
