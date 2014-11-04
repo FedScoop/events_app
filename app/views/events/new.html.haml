@@ -1,0 +1,58 @@
+- agenda_counter = 0
+- sponsor_counter = 0
+%h1 New Event
+%br
+%br
+= form_for @event, html: { class: "new-event-form" } do |f|
+  %b Name:
+  = f.text_field :name
+  %br
+  %b Date & Time:
+  = f.datetime_select :date
+  %br
+  %b Location:
+  = f.collection_select :venue, Venue.order(:name),:id,:name
+  Need to add a new venue? Do so <a href="#{new_venue_path}" target="_blank">here</a> first.
+  %br
+  %b Speakers:
+  %br
+  .speakers-select
+    - num = Speaker.count
+    - slice_num = (num / 3) + (num % 3)
+    - Speaker.order(:last_name).each_slice(slice_num) do |slice|
+      .speaker-column
+        - slice.each do |s|
+          = check_box_tag "event[speaker_ids][]", s.id
+          = s
+          %br
+  %div{ style: "clear:both;" }
+  %br
+  .add-sponsor
+    %b Sponsors:
+    %br
+    %a.add-sponsor-item{ href: '#' } Add sponsorship level
+    %br
+    = render partial: 'sponsor_form', locals: { event: @event, counter: sponsor_counter, level: nil, sponsors: nil }
+    - sponsor_counter += 1
+    %div{ style: "clear:both;" }
+  %div{ style: "clear:both;" }
+  %br
+  %b Should this event go live?
+  = f.check_box :live
+  %br
+  %b URL for event website:
+  = f.text_field :site_url
+  %br
+  %b URL for Regsistration website:
+  = f.text_field :reg_url
+  %br
+  .add-agenda
+    %b Agenda:
+    %br
+    You can add the agenda once you create the event.
+  = f.submit
+.new-sponsor-item{ style: "display:none;" }
+  = render partial: "sponsor_form", locals: { event: @event, counter: sponsor_counter, level: nil, sponsors: nil }
+  %div{ style: "clear:both;" }
+.sponsor-counter{ style: "display:none;" }
+  = sponsor_counter
