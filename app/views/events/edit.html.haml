@@ -5,7 +5,7 @@
 %br
 = form_for @event, html: { class: "edit-event-form" } do |f|
   %b Name:
-  = f.text_field :name
+  = f.text_field :name, required: true
   %br
   %b Date & Time:
   = f.datetime_select :date
